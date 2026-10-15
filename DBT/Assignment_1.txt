@@ -1,0 +1,271 @@
+1.Define a schema for a Library Management System with the following entities:
+   - Books
+   - Authors
+   - Members
+   - Borrow_Records
+
+create database library_management;
+
+show databases;
+
+2. Write the SQL command to create a table Authors with the following fields:
+   - author_id (Primary Key, INT)
+   - name (VARCHAR(100))
+   - country (VARCHAR(50))
+
+
+create table Author(author_id int primary key,name varchar(100),country varchar(50));
+
+show tables;
+
+desc Author;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| author_id | int          | NO   | PRI | NULL    |       |
+| name      | varchar(100) | YES  |     | NULL    |       |
+| country   | varchar(50)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+3.Write the SQL command to create a table Books with the following fields:
+   - book_id (Primary Key, INT)
+   - title (VARCHAR(150))
+   - author_id (Foreign Key referencing Authors)
+   - published_year (YEAR)
+   - available_copies (INT)
+
+
+create table Books(book_id int primary key,
+    title varchar(150),
+    author_id int,
+     published_year year,
+     available_copies int,
+     foreign key(author_id) REFERENCES Author(author_id));
+
+
+ desc Books;
+ +------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| book_id          | int          | NO   | PRI | NULL    |       |
+| title            | varchar(150) | YES  |     | NULL    |       |
+| author_id        | int          | YES  | MUL | NULL    |       |
+| published_year   | year         | YES  |     | NULL    |       |
+| available_copies | int          | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+
+4. Write the SQL command to create a table Members with:
+   - member_id (Primary Key, INT)
+   - name (VARCHAR(100))
+   - email (VARCHAR(100), unique)
+   - phone (VARCHAR(15))
+
+
+
+ create table Members(member_id int primary key,
+             name varchar(100), 
+             email varchar(100) unique, 
+             phone varchar(15));
+
+ desc Members;
+ +-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| member_id | int          | NO   | PRI | NULL    |       |
+| name      | varchar(100) | YES  |     | NULL    |       |
+| email     | varchar(100) | YES  | UNI | NULL    |       |
+| phone     | varchar(15)  | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+
+5.Write the SQL command to create a table Borrow_Records with:
+   - record_id (Primary Key, INT)
+   - member_id (Foreign Key referencing Members)
+   - book_id (Foreign Key referencing Books)
+   - borrow_date (DATE)
+   - return_date (DATE)
+  13.Write a SQL query to create a foreign key & primary key relationship between two tables.
+
+ create table Borrow_Records(record_id int primary key,
+                member_id int,
+                book_id int,
+                borrow_date date,
+                return_date date,
+                foreign key (member_id) REFERENCES Members(member_id),
+                foreign key (book_id) REFERENCES Books(book_id));
+
+ desc Borrow_Records;
+ +-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| record_id   | int  | NO   | PRI | NULL    |       |
+| member_id   | int  | YES  | MUL | NULL    |       |
+| book_id     | int  | YES  | MUL | NULL    |       |
+| borrow_date | date | YES  |     | NULL    |       |
+| return_date | date | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+
+6.Modify the Books table to add a column genre of type VARCHAR(50).
+alter table Books add column genre varchar(50);
+
+desc Books;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| book_id          | int          | NO   | PRI | NULL    |       |
+| title            | varchar(150) | YES  |     | NULL    |       |
+| author_id        | int          | YES  | MUL | NULL    |       |
+| published_year   | year         | YES  |     | NULL    |       |
+| available_copies | int          | YES  |     | NULL    |       |
+| genre            | varchar(50)  | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+
+8.. Insert 3 records into the Authors table.
+insert into Author(author_id,name,country) values(1,'Robert Martin','USA'),
+            (2,'Thomas Connolly','UK'),
+            (3,'James Gosling','Canada');
+
+ select * from Author;
++-----------+-----------------+---------+
+| author_id | name            | country |
++-----------+-----------------+---------+
+|         1 | Robert Martin   | USA     |
+|         2 | Thomas Connolly | UK      |
+|         3 | James Gosling   | Canada  |
++-----------+-----------------+---------+
+
+
+9.Insert 5 books into the Books table.
+
+  insert into Books(book_id,title,author_id,published_year,available_copies)values
+                    (1,'Database Systems',2,2018,5),
+                    (2,'Clean Code',1,2008,3),
+                    (3,'Java Programming',3,2020,4),
+                    (4,'SQL Fundamentals',2,2016,6),
+                    (5,'Learning MySQL',1,1999,2);
+
+ select * from Books;
+
+ +---------+------------------+-----------+----------------+------------------+-------+
+| book_id | title            | author_id | published_year | available_copies | genre |
++---------+------------------+-----------+----------------+------------------+-------+
+|       1 | Database Systems |         2 |           2018 |                5 | NULL  |
+|       2 | Clean Code       |         1 |           2008 |                3 | NULL  |
+|       3 | Java Programming |         3 |           2020 |                4 | NULL  |
+|       4 | SQL Fundamentals |         2 |           2016 |                6 | NULL  |
+|       5 | Learning MySQL   |         1 |           1999 |                2 | NULL  |
++---------+------------------+-----------+----------------+-----------------
+
+
+10.Insert 3 members into the Members table.
+ insert into Members(member_id,name,email,phone) 
+                values(1,'Pranali','pranali@gmail.com','1234567890'),
+                     (2,'Snehal','snehal@gmail.com','0987654321'),
+                     (3,'Vaibhavi','vaibhavi@gmailcom','6789054321');
+
+ select * from Members;
+
+ +-----------+----------+-------------------+------------+
+| member_id | name     | email             | phone      |
++-----------+----------+-------------------+------------+
+|         1 | Pranali  | pranali@gmail.com | 1234567890 |
+|         2 | Snehal   | snehal@gmail.com  | 0987654321 |
+|         3 | Vaibhavi | vaibhavi@gmailcom | 6789054321 |
++-----------+----------+-------------------+------------+
+
+
+11.Insert 4 borrow records into the Borrow_Records table
+ insert into Borrow_Records(record_id,member_id,book_id,borrow_date,return_date)
+                        values(1,1,1,'2026-09-01','2026-09-15'),
+                        (2,2,2,'2026-09-03','2026-09-17'),
+                        (3,1,3,'2026-09-05',null),
+                        (4,3,1,'2026-09-07',null);
+
+ select * from Borrow_Records;
+
++-----------+-----------+---------+-------------+-------------+
+| record_id | member_id | book_id | borrow_date | return_date |
++-----------+-----------+---------+-------------+-------------+
+|         1 |         1 |       1 | 2026-09-01  | 2026-09-15  |
+|         2 |         2 |       2 | 2026-09-03  | 2026-09-17  |
+|         3 |         1 |       3 | 2026-09-05  | NULL        |
+|         4 |         3 |       1 | 2026-09-07  | NULL        |
++-----------+-----------+---------+-------------+-------------+
+
+12.Write an SQL query to select all books where published_year is after 2015.
+
+ select * from Books where published_year>2015;
+
+ +---------+------------------+-----------+----------------+------------------+-------+
+| book_id | title            | author_id | published_year | available_copies | genre |
++---------+------------------+-----------+----------------+------------------+-------+
+|       1 | Database Systems |         2 |           2018 |                5 | NULL  |
+|       3 | Java Programming |         3 |           2020 |                4 | NULL  |
+|       4 | SQL Fundamentals |         2 |           2016 |                6 | NULL  |
++---------+------------------+-----------+----------------+------------------+-------+
+
+14.. Write an SQL query to find all members who have borrowed the book with title 'Database Systems'.
+ select name from Members where member_id in(select member_id from Borrow_Records where book_id=(select book_id from Books where title='Database Systems'));
+ +----------+
+| name     |
++----------+
+| Pranali  |
+| Vaibhavi |
++----------+
+
+
+15.. Update the available_copies column of a specific book (choose any book) by reducing it by 1 after it is borrowed.
+ update Books set available_copies=available_copies-1 where book_id=1;
+
+ select * from Books where book_id=1;
+
++---------+------------------+-----------+----------------+------------------+-------+
+| book_id | title            | author_id | published_year | available_copies | genre |
++---------+------------------+-----------+----------------+------------------+-------+
+|       1 | Database Systems |         2 |           2018 |                4 | NULL  |
++---------+------------------+-----------+----------------+------------------+-------+
+
+16.Delete a record from Members where member_id = 3.
+  delete from Borrow_Records where member_id=3;
+
+  delete from Members where member_id=3;
+
+  select * from Members;
+
++-----------+---------+-------------------+------------+
+| member_id | name    | email             | phone      |
++-----------+---------+-------------------+------------+
+|         1 | Pranali | pranali@gmail.com | 1234567890 |
+|         2 | Snehal  | snehal@gmail.com  | 0987654321 |
++-----------+---------+-------------------+------------+
+
+
+17.Update a Book name record from Book table  with id = 1.
+update Books set title='Advanced Database System' where book_id=1;
++---------+--------------------------+-----------+----------------+------------------+-------+
+| book_id | title                    | author_id | published_year | available_copies | genre |
++---------+--------------------------+-----------+----------------+------------------+-------+
+|       1 | Advanced Database System |         2 |           2018 |                4 | NULL  |
++---------+--------------------------+-----------+----------------+------------------+-------+
+
+18.Write an SQL query to list all books along with their authors' names.
+select Books.title,Author.name from Books join Author on Books.author_id=Author.author_id;
++--------------------------+-----------------+
+| title                    | name            |
++--------------------------+-----------------+
+| Clean Code               | Robert Martin   |
+| Learning MySQL           | Robert Martin   |
+| Advanced Database System | Thomas Connolly |
+| SQL Fundamentals         | Thomas Connolly |
+| Java Programming         | James Gosling   |
++--------------------------+-----------------+
+
+19.Write an SQL query to delete all books from the Books table where the published_year is before 2000.
+delete from Books where published_year<2000;
+
+20.. Write an SQL query to find all books that are never borrowed (i.e., no records in Borrow_Records).
+select * from Books where book_id not in(select book_id from Borrow_Records);
++---------+------------------+-----------+----------------+------------------+-------+
+| book_id | title            | author_id | published_year | available_copies | genre |
++---------+------------------+-----------+----------------+------------------+-------+
+|       4 | SQL Fundamentals |         2 |           2016 |                6 | NULL  |
++---------+------------------+-----------+----------------+------------------+-------+

@@ -1,0 +1,137 @@
+1. Write a SQL query to create Employee & Department table with specific columns and constraints.(Note- Create Table, insert data as per your Choice)
+    create table Dept(DeptId int primary key, DeptName varchar(50) not null);
+     desc Dept;
+
+create table Employee(EmpId int primary key,
+                         EmpName varchar(50) not null ,
+                         Salary decimal(10,2),DeptId int, 
+                         city varchar(30),
+                         joiningDate date,
+                         constraint fk_dept foreign key(DeptId) references Dept(DeptId));
+ desc Employee;
+
+
+insert into Dept(DeptId,DeptName) values(10,'IT'),(20,'HR'),(30,'Sales'),(40,'Finance'),(50,'Marketing'),(60,'Operations');
+
+ select * from Dept;
+
+
+2. Write a SQL query to add any new column to an existing table.
+
+insert into Employee(EmpId,EmpName,Salary,DeptId,City,JoiningDate) 
+                values(101,'Amit Sharma',45000,10,'Mumbai','2022-01-15'),
+                        (102,'Priya Patil',65000,20,'Pune','2021-06-10'),
+                        (103,'Rahul Desai',55000,10,'Mumbai','2023-03-20'),
+                        (104, 'Sneha Kulkarni', 75000, 30, 'Nashik', '2020-11-05'),
+                        (105, 'Rohan Joshi', 50000, 20, 'Mumbai', '2022-08-12'),
+                        (106, 'Neha More', 85000, 10, 'Nagpur', '2019-04-25'),
+                        (107, 'Karan Shah', 60000, 40, 'Pune', '2021-09-18'),
+                        (108, 'Pooja Sawant', 45000, 30, 'Mumbai', '2023-07-01'),
+                        (109, 'Akash Pawar', 70000, 20, 'Kolhapur', '2020-02-14'),
+                        (110, 'Isha Jadhav', 55000, 10, 'Mumbai', '2024-01-08');
+
+ select * from Employee;
+
+
+ alter table Employee add column EmailId varchar(50);
+
+
+2. Write a SQL query to add any new column to an existing table.
+
+mysql> UPDATE Employee
+    -> SET EmailId = CASE EmpId
+    ->     WHEN 101 THEN 'amit@gmail.com'
+    ->     WHEN 102 THEN 'priya@gmail.com'
+    ->     WHEN 103 THEN 'rahul@gmail.com'
+    ->     WHEN 104 THEN 'sneha@gmail.com'
+    ->     WHEN 105 THEN 'rohan@gmail.com'
+    ->     WHEN 106 THEN 'neha@gmail.com'
+    ->     WHEN 107 THEN 'karan@gmail.com'
+    ->     WHEN 108 THEN 'pooja@gmail.com'
+    ->     WHEN 109 THEN 'akash@gmail.com'
+    ->     WHEN 110 THEN 'isha@gmail.com'
+    -> END
+    -> WHERE EmpId IN (101, 102, 103, 104, 105, 106, 107, 108, 109, 110);
+	
+
+5. Write a SQL query to update salary records from a table where id = 105.
+ update Employee set Salary=60000 where EmpId=105;
+
+
+6. Write a query to grant SELECT privilege on the Emp table to user readonly_user.
+GRANT SELECT ON assignment_2.employee TO 'readonly_user'@'localhost';
+
+7. Write a query to revoke INSERT privilege on the Emp table from user temp_user.
+GRANT SELECT ON assignment_2.employee TO 'readonly_user'@'localhost';
+
+8. Write a query to insert a new employee into the Emp table and commit the transaction.
+ start transaction;
+ insert into employee(EmpId,EmpName,Salary,DeptId,city,joiningDate,EmailId) values(111,'Pranali Khorje',80000,20,'Pune','2025-03-04','khorje@gmail.com');
+ commit;
+
+9. Write a query to update the Salary of an employee with EmpID = 101 and commit the transaction.
+ start transaction;
+  update employee set salary=60000 where EmpId=101;
+   commit;
+
+
+10. Write a query to set a SAVEPOINT before updating the DeptID of an employee.
+start transaction;
+ savepoint sp1;
+ update employee set DeptId=20 where EmpId=101;
+ commit;
+  
+ 
+
+11. Write a query to rollback to the previously created SAVEPOINT.
+
+rollback to savepoint sp1;
+
+13. Write a query to list all employees whose salary is greater than 50,000.
+
+ select * from employee where Salary>50000;
+
+
+14. Write a query to increase the salary of all employees in DeptID = 10 by 10%.
+
+ update employee set Salary=Salary*1.10 where DeptId=10;
+
+
+
+15. Write a query to count the total number of employees in each department.
+select DeptId,count(*) as totalEmployees from employee group by DeptId;
+
+
+
+16. Write a query to list departments that have no employees. & create a view for those salespeople who belong to the city of Mumbai. 
+SELECT d.DeptId, d.DeptName FROM Dept d WHERE NOT EXISTS (SELECT 1 FROM Employee e WHERE e.DeptId = d.DeptId);
+
+
+ CREATE VIEW Mumbai_Salespeople AS SELECT EmpId, EmpName, Salary, DeptId, city FROM Employee WHERE city = 'Mumbai'  AND DeptId = 30;
+ SELECT * FROM Mumbai_Salespeople;
+
+17. Write a query to display the highest salary among all employees.
+select Max(Salary)as HighestSalary from employee;
+
+
+18. Write a query to display the 2nd highest salary among all employees.
+
+select Max(Salary)as SecondHighestSalary from employee where Salary<(select Max(Salary)from employee);
+
+
+
+19. Write a query to show all employees ordered by JoiningDate in descending order.
+select * from employee order by JoiningDate desc;
+
+
+20. Write a query to rename the DeptName column to DepartmentName.
+alter table Dept rename column DeptName to DepartmentName;
+
+
+4. Write a SQL query to delete all records from a table.
+DELETE FROM Employee;
+
+12. Write a query to truncate all data from the Emp table.
+TRUNCATE TABLE Employee;
+
+
