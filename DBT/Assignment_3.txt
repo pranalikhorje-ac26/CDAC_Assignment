@@ -1,0 +1,244 @@
+1. Write a query to calculate the total salary of all employees.
+
+select sum(Salary) as totalsalary from employee;
++-------------+
+| totalsalary |
++-------------+
+|   729500.00 |
++-------------+
+
+2. Write a query to find the average salary of employees in each department using GROUP BY.
+
+ select DeptId,avg(Salary) as averagesalary from employee group by DeptId;
++--------+---------------+
+| DeptId | averagesalary |
++--------+---------------+
+|     10 |  71500.000000 |
+|     20 |  67000.000000 |
+|     30 |  60000.000000 |
+|     40 |  60000.000000 |
++--------+---------------+
+
+3. Write a query to count the total number of employees in each department.
+
+ select DeptId,count(*) as totalEmployees from Employee group by DeptId;
+ +--------+----------------+
+| DeptId | totalEmployees |
++--------+----------------+
+|     10 |              3 |
+|     20 |              5 |
+|     30 |              2 |
+|     40 |              1 |
++--------+----------------+
+
+4. Write a query to display departments having more than 5 employees using HAVING clause.
+
+ select DeptId,count(*) as Totalemployees from employee group by DeptId having count(*)>5;
+ 
+5. Write a query to list distinct department locations from the Dept table.
+select distinct location from dept;
++----------+
+| location |
++----------+
+| Mumbai   |
+| Pune     |
+| Nashik   |
++----------+
+
+6. Write a query to display the highest salary among all employees. 
+ Write a query to display all total number of  employee in table.
+
+ select Max(Salary) from employee;
+ select count(*) as employee from employee;
+ +-------------+    
+| Max(Salary) |
++-------------+
+|    93500.00 |
++-------------+
+
++----------+
+| employee |
++----------+
+|       11 |
++----------+
+ 
+
+7. Write a query to find employees whose name starts with 'A' using LIKE operator.
+
+select * from employee where EmpName like 'A%';
++-------+-------------+----------+--------+----------+-------------+-----------------+
+| EmpId | EmpName     | Salary   | DeptId | city     | joiningDate | EmailId         |
++-------+-------------+----------+--------+----------+-------------+-----------------+
+|   101 | Amit Sharma | 60000.00 |     20 | Mumbai   | 2022-01-15  | amit@gmail.com  |
+|   109 | Akash Pawar | 70000.00 |     20 | Kolhapur | 2020-02-14  | akash@gmail.com |
++-------+-------------+----------+--------+----------+-------------+-----------------+
+
+8. Write a query to find employees whose name ends with 'n' using LIKE operator.
+
+select * from employee where EmpName like '%n';
+
+
+9. Write a query to find employees whose name contains 'ra' using LIKE operator.
+
+select * from employee where EmpName like '%ra%';
++-------+----------------+----------+--------+--------+-------------+------------------+
+| EmpId | EmpName        | Salary   | DeptId | city   | joiningDate | EmailId          |
++-------+----------------+----------+--------+--------+-------------+------------------+
+|   103 | Rahul Desai    | 60500.00 |     10 | Mumbai | 2023-03-20  | rahul@gmail.com  |
+|   107 | Karan Shah     | 60000.00 |     40 | Pune   | 2021-09-18  | karan@gmail.com  |
+|   111 | Pranali Khorje | 80000.00 |     20 | Pune   | 2025-03-04  | khorje@gmail.com |
++-------+----------------+----------+--------+--------+-------------+------------------+
+
+10. Write a query to display all employees sorted by their Salary in descending order.
+
+ select * from employee order by Salary desc;
++-------+----------------+----------+--------+----------+-------------+------------------+
+| EmpId | EmpName        | Salary   | DeptId | city     | joiningDate | EmailId          |
++-------+----------------+----------+--------+----------+-------------+------------------+
+|   106 | Neha More      | 93500.00 |     10 | Nagpur   | 2019-04-25  | neha@gmail.com   |
+|   111 | Pranali Khorje | 80000.00 |     20 | Pune     | 2025-03-04  | khorje@gmail.com |
+|   104 | Sneha Kulkarni | 75000.00 |     30 | Nashik   | 2020-11-05  | sneha@gmail.com  |
+|   109 | Akash Pawar    | 70000.00 |     20 | Kolhapur | 2020-02-14  | akash@gmail.com  |
+|   102 | Priya Patil    | 65000.00 |     20 | Pune     | 2021-06-10  | priya@gmail.com  |
+|   103 | Rahul Desai    | 60500.00 |     10 | Mumbai   | 2023-03-20  | rahul@gmail.com  |
+|   110 | Isha Jadhav    | 60500.00 |     10 | Mumbai   | 2024-01-08  | isha@gmail.com   |
+|   101 | Amit Sharma    | 60000.00 |     20 | Mumbai   | 2022-01-15  | amit@gmail.com   |
+|   105 | Rohan Joshi    | 60000.00 |     20 | Mumbai   | 2022-08-12  | rohan@gmail.com  |
+|   107 | Karan Shah     | 60000.00 |     40 | Pune     | 2021-09-18  | karan@gmail.com  |
+|   108 | Pooja Sawant   | 45000.00 |     30 | Mumbai   | 2023-07-01  | pooja@gmail.com  |
++-------+----------------+----------+--------+----------+-------------+------------------+
+11. Write a query to display all employees sorted by DeptID ascending and then Salary descending.
+
+ select * from employee order by DeptId asc,Salary desc;
++-------+----------------+----------+--------+----------+-------------+------------------+
+| EmpId | EmpName        | Salary   | DeptId | city     | joiningDate | EmailId          |
++-------+----------------+----------+--------+----------+-------------+------------------+
+|   106 | Neha More      | 93500.00 |     10 | Nagpur   | 2019-04-25  | neha@gmail.com   |
+|   103 | Rahul Desai    | 60500.00 |     10 | Mumbai   | 2023-03-20  | rahul@gmail.com  |
+|   110 | Isha Jadhav    | 60500.00 |     10 | Mumbai   | 2024-01-08  | isha@gmail.com   |
+|   111 | Pranali Khorje | 80000.00 |     20 | Pune     | 2025-03-04  | khorje@gmail.com |
+|   109 | Akash Pawar    | 70000.00 |     20 | Kolhapur | 2020-02-14  | akash@gmail.com  |
+|   102 | Priya Patil    | 65000.00 |     20 | Pune     | 2021-06-10  | priya@gmail.com  |
+|   101 | Amit Sharma    | 60000.00 |     20 | Mumbai   | 2022-01-15  | amit@gmail.com   |
+|   105 | Rohan Joshi    | 60000.00 |     20 | Mumbai   | 2022-08-12  | rohan@gmail.com  |
+|   104 | Sneha Kulkarni | 75000.00 |     30 | Nashik   | 2020-11-05  | sneha@gmail.com  |
+|   108 | Pooja Sawant   | 45000.00 |     30 | Mumbai   | 2023-07-01  | pooja@gmail.com  |
+|   107 | Karan Shah     | 60000.00 |     40 | Pune     | 2021-09-18  | karan@gmail.com  |
++-------+----------------+----------+--------+----------+-------------+------------------+
+
+12. Write a query to find employees whose salary is between 30,000 and 60,000.
+
+select * from employee where Salary between 30000 and 60000;
++-------+--------------+----------+--------+--------+-------------+-----------------+
+| EmpId | EmpName      | Salary   | DeptId | city   | joiningDate | EmailId         |
++-------+--------------+----------+--------+--------+-------------+-----------------+
+|   101 | Amit Sharma  | 60000.00 |     20 | Mumbai | 2022-01-15  | amit@gmail.com  |
+|   105 | Rohan Joshi  | 60000.00 |     20 | Mumbai | 2022-08-12  | rohan@gmail.com |
+|   107 | Karan Shah   | 60000.00 |     40 | Pune   | 2021-09-18  | karan@gmail.com |
+|   108 | Pooja Sawant | 45000.00 |     30 | Mumbai | 2023-07-01  | pooja@gmail.com |
++-------+--------------+----------+--------+--------+-------------+-----------------+
+
+13. Write a query to display all employees whose DeptID is in (10, 20, 30).
+
+ select * from employee where DeptId in(10,20,30);
+ +-------+----------------+----------+--------+----------+-------------+------------------+
+| EmpId | EmpName        | Salary   | DeptId | city     | joiningDate | EmailId          |
++-------+----------------+----------+--------+----------+-------------+------------------+
+|   101 | Amit Sharma    | 60000.00 |     20 | Mumbai   | 2022-01-15  | amit@gmail.com   |
+|   102 | Priya Patil    | 65000.00 |     20 | Pune     | 2021-06-10  | priya@gmail.com  |
+|   103 | Rahul Desai    | 60500.00 |     10 | Mumbai   | 2023-03-20  | rahul@gmail.com  |
+|   104 | Sneha Kulkarni | 75000.00 |     30 | Nashik   | 2020-11-05  | sneha@gmail.com  |
+|   105 | Rohan Joshi    | 60000.00 |     20 | Mumbai   | 2022-08-12  | rohan@gmail.com  |
+|   106 | Neha More      | 93500.00 |     10 | Nagpur   | 2019-04-25  | neha@gmail.com   |
+|   108 | Pooja Sawant   | 45000.00 |     30 | Mumbai   | 2023-07-01  | pooja@gmail.com  |
+|   109 | Akash Pawar    | 70000.00 |     20 | Kolhapur | 2020-02-14  | akash@gmail.com  |
+|   110 | Isha Jadhav    | 60500.00 |     10 | Mumbai   | 2024-01-08  | isha@gmail.com   |
+|   111 | Pranali Khorje | 80000.00 |     20 | Pune     | 2025-03-04  | khorje@gmail.com |
++-------+----------------+----------+--------+----------+-------------+------------------+
+
+14. Write a query to display Min salary of employee .
+
+select min(Salary) from employee;
++-------------+
+| min(Salary) |
++-------------+
+|    45000.00 |
++-------------+
+
+15. Write a query to display employees whose JoiningDate is between '2020-01-01' and '2021-12-31'.
+
+ select * from employee where JoiningDate between '2020-01-01' and '2021-12-31';
++-------+----------------+----------+--------+----------+-------------+-----------------+
+| EmpId | EmpName        | Salary   | DeptId | city     | joiningDate | EmailId         |
++-------+----------------+----------+--------+----------+-------------+-----------------+
+|   102 | Priya Patil    | 65000.00 |     20 | Pune     | 2021-06-10  | priya@gmail.com |
+|   104 | Sneha Kulkarni | 75000.00 |     30 | Nashik   | 2020-11-05  | sneha@gmail.com |
+|   107 | Karan Shah     | 60000.00 |     40 | Pune     | 2021-09-18  | karan@gmail.com |
+|   109 | Akash Pawar    | 70000.00 |     20 | Kolhapur | 2020-02-14  | akash@gmail.com |
++-------+----------------+----------+--------+----------+-------------+-----------------+
+
+16. Write a query to display employees whose Salary is NULL.
+
+select * from employee where Salary is null;
+
+17. Write a query to display employees whose Salary is NOT NULL.
+
+select * from employee where Salary is not null;
++-------+----------------+----------+--------+----------+-------------+------------------+
+| EmpId | EmpName        | Salary   | DeptId | city     | joiningDate | EmailId          |
++-------+----------------+----------+--------+----------+-------------+------------------+
+|   101 | Amit Sharma    | 60000.00 |     20 | Mumbai   | 2022-01-15  | amit@gmail.com   |
+|   102 | Priya Patil    | 65000.00 |     20 | Pune     | 2021-06-10  | priya@gmail.com  |
+|   103 | Rahul Desai    | 60500.00 |     10 | Mumbai   | 2023-03-20  | rahul@gmail.com  |
+|   104 | Sneha Kulkarni | 75000.00 |     30 | Nashik   | 2020-11-05  | sneha@gmail.com  |
+|   105 | Rohan Joshi    | 60000.00 |     20 | Mumbai   | 2022-08-12  | rohan@gmail.com  |
+|   106 | Neha More      | 93500.00 |     10 | Nagpur   | 2019-04-25  | neha@gmail.com   |
+|   107 | Karan Shah     | 60000.00 |     40 | Pune     | 2021-09-18  | karan@gmail.com  |
+|   108 | Pooja Sawant   | 45000.00 |     30 | Mumbai   | 2023-07-01  | pooja@gmail.com  |
+|   109 | Akash Pawar    | 70000.00 |     20 | Kolhapur | 2020-02-14  | akash@gmail.com  |
+|   110 | Isha Jadhav    | 60500.00 |     10 | Mumbai   | 2024-01-08  | isha@gmail.com   |
+|   111 | Pranali Khorje | 80000.00 |     20 | Pune     | 2025-03-04  | khorje@gmail.com |
++-------+----------------+----------+--------+----------+-------------+------------------+
+
+18. Write a query to calculate the total salary per department, but only for departments where total salary is greater than 1,00,000 (use HAVING).
+
+select DeptId,sum(Salary) as totalSalary from employee group by DeptId having sum(Salary)>100000;
++--------+-------------+
+| DeptId | totalSalary |
++--------+-------------+
+|     10 |   214500.00 |
+|     20 |   335000.00 |
+|     30 |   120000.00 |
++--------+-------------+
+
+19. Write a query to display all distinct employee names.
+
+select distinct EmpName from employee;
++----------------+
+| EmpName        |
++----------------+
+| Amit Sharma    |
+| Priya Patil    |
+| Rahul Desai    |
+| Sneha Kulkarni |
+| Rohan Joshi    |
+| Neha More      |
+| Karan Shah     |
+| Pooja Sawant   |
+| Akash Pawar    |
+| Isha Jadhav    |
+| Pranali Khorje |
++----------------+
+
+20. Write a query to count the number of departments having the same location.
+
+select Location,count(*) as totaldepartment from Dept group by Location;
++----------+-----------------+
+| Location | totaldepartment |
++----------+-----------------+
+| Mumbai   |               3 |
+| Pune     |               2 |
+| Nashik   |               1 |
++----------+-----------------+
+
+
