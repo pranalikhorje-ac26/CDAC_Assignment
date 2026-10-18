@@ -1,0 +1,406 @@
+Write Create a Employee ,Department & Project Tables .Add atleast  5 records in each table & Write a following Queries.
+
+ create database assignment_4;
+ use assignment_4;
+ 
+ create table dept(deptid int primary key, deptname varchar(50) not nu
+
+insert into dept(deptid,deptname,location)
+            values(10,'IT','Mumbai'),
+			(20,'HR','Pune'),
+			(30,'Finance','Mumbai'),
+			(40,'Sales','Nashik'),
+			(50,'Marketing','Mumbai'),
+			(60,'Operations','Pune');
+
+select * from dept;
++--------+------------+----------+
+| deptid | deptname   | location |
++--------+------------+----------+
+|     10 | IT         | Mumbai   |
+|     20 | HR         | Pune     |
+|     30 | Finance    | Mumbai   |
+|     40 | Sales      | Nashik   |
+|     50 | Marketing  | Mumbai   |
+|     60 | Operations | Pune     |
++--------+------------+----------+
+
+10.	Write a SQL query to create an AUTO_INCREMENT sequence for EmpID in the Emp table during table creation.
+
+ create table emp(empid int primary key auto_increment,empname varchar(50) not null,
+                  salary decimal(10,2),deptid int null,managerid int null,
+				  foreign key(deptid)references dept(deptid),
+				  foreign key(managerid)references emp(empid));
+				  
+insert into emp(empname,salary,deptid,managerid)
+             values('Amit',60000,10,null),
+					('Priya',75000,10,1),
+					('Rahul',45000,20,1),
+					('Sneha',80000,30,null),
+					('Vikas',55000,30,4),
+					('Neha',90000,40,null),
+					('Karan',40000,40,6),
+					('Pooja',65000,50,null),
+					('Rohit',50000,10,1),
+					('Anjali',70000,20,3),
+					('Suresh',35000,null,1),
+					('Meera',85000,30,4);
+					
+					
+					
+select * from emp;			
++-------+---------+----------+--------+-----------+
+| empid | empname | salary   | deptid | managerid |
++-------+---------+----------+--------+-----------+
+|     1 | Amit    | 60000.00 |     10 |      NULL |
+|     2 | Priya   | 75000.00 |     10 |         1 |
+|     3 | Rahul   | 45000.00 |     20 |         1 |
+|     4 | Sneha   | 80000.00 |     30 |      NULL |
+|     5 | Vikas   | 55000.00 |     30 |         4 |
+|     6 | Neha    | 90000.00 |     40 |      NULL |
+|     7 | Karan   | 40000.00 |     40 |         6 |
+|     8 | Pooja   | 65000.00 |     50 |      NULL |
+|     9 | Rohit   | 50000.00 |     10 |         1 |
+|    10 | Anjali  | 70000.00 |     20 |         3 |
+|    11 | Suresh  | 35000.00 |   NULL |         1 |
+|    12 | Meera   | 85000.00 |     30 |         4 |
++-------+---------+----------+--------+-----------+
+
+ create table project(projectid int primary key,projectname varchar(100) not null,
+                     budget decimal(12,2),deptid int,foreign key(deptid)references dept(deptid));
+
+ INSERT INTO Project (ProjectID, ProjectName, Budget, DeptID) VALUES
+     (101, 'Banking Application', 500000, 10),
+     (102, 'Payroll System', 200000, 20),
+     (103, 'Financial Dashboard', 350000, 30),
+     (104, 'E-Commerce Website', 450000, 40),
+     (105, 'Marketing Analytics', 250000, 50),
+     (106, 'Inventory System', 300000, 10);
+
+select * from project;
++-----------+---------------------+-----------+--------+
+| projectid | projectname         | budget    | deptid |
++-----------+---------------------+-----------+--------+
+|       101 | Banking Application | 500000.00 |     10 |
+|       102 | Payroll System      | 200000.00 |     20 |
+|       103 | Financial Dashboard | 350000.00 |     30 |
+|       104 | E-Commerce Website  | 450000.00 |     40 |
+|       105 | Marketing Analytics | 250000.00 |     50 |
+|       106 | Inventory System    | 300000.00 |     10 |
++-----------+---------------------+-----------+--------+
+
+
+
+1.	Write a Relational Algebra expression to perform Cartesian Product (Cross Join) between Emp and Dept tables.
+
+select emp.empid,emp.empname,dept.deptid,dept.deptname from emp cross join dept;
+
++-------+---------+--------+------------+
+| empid | empname | deptid | deptname   |
++-------+---------+--------+------------+
+|     1 | Amit    |     60 | Operations |
+|     1 | Amit    |     50 | Marketing  |
+|     1 | Amit    |     40 | Sales      |
+|     1 | Amit    |     30 | Finance    |
+|     1 | Amit    |     20 | HR         |
+|     1 | Amit    |     10 | IT         |
+|     2 | Priya   |     60 | Operations |
+|     2 | Priya   |     50 | Marketing  |
+|     2 | Priya   |     40 | Sales      |
+|     2 | Priya   |     30 | Finance    |
+|     2 | Priya   |     20 | HR         |
+|     2 | Priya   |     10 | IT         |
+|     3 | Rahul   |     60 | Operations |
+|     3 | Rahul   |     50 | Marketing  |
+|     3 | Rahul   |     40 | Sales      |
+|     3 | Rahul   |     30 | Finance    |
+|     3 | Rahul   |     20 | HR         |
+|     3 | Rahul   |     10 | IT         |
+|     4 | Sneha   |     60 | Operations |
+|     4 | Sneha   |     50 | Marketing  |
+|     4 | Sneha   |     40 | Sales      |
+|     4 | Sneha   |     30 | Finance    |
+|     4 | Sneha   |     20 | HR         |
+|     4 | Sneha   |     10 | IT         |
+|     5 | Vikas   |     60 | Operations |
+|     5 | Vikas   |     50 | Marketing  |
+|     5 | Vikas   |     40 | Sales      |
+|     5 | Vikas   |     30 | Finance    |
+|     5 | Vikas   |     20 | HR         |
+|     5 | Vikas   |     10 | IT         |
+|     6 | Neha    |     60 | Operations |
+|     6 | Neha    |     50 | Marketing  |
+|     6 | Neha    |     40 | Sales      |
+|     6 | Neha    |     30 | Finance    |
+|     6 | Neha    |     20 | HR         |
+|     6 | Neha    |     10 | IT         |
+|     7 | Karan   |     60 | Operations |
+|     7 | Karan   |     50 | Marketing  |
+|     7 | Karan   |     40 | Sales      |
+|     7 | Karan   |     30 | Finance    |
+|     7 | Karan   |     20 | HR         |
+|     7 | Karan   |     10 | IT         |
+|     8 | Pooja   |     60 | Operations |
+|     8 | Pooja   |     50 | Marketing  |
+|     8 | Pooja   |     40 | Sales      |
+|     8 | Pooja   |     30 | Finance    |
+|     8 | Pooja   |     20 | HR         |
+|     8 | Pooja   |     10 | IT         |
+|     9 | Rohit   |     60 | Operations |
+|     9 | Rohit   |     50 | Marketing  |
+|     9 | Rohit   |     40 | Sales      |
+|     9 | Rohit   |     30 | Finance    |
+|     9 | Rohit   |     20 | HR         |
+|     9 | Rohit   |     10 | IT         |
+|    10 | Anjali  |     60 | Operations |
+|    10 | Anjali  |     50 | Marketing  |
+|    10 | Anjali  |     40 | Sales      |
+|    10 | Anjali  |     30 | Finance    |
+|    10 | Anjali  |     20 | HR         |
+|    10 | Anjali  |     10 | IT         |
+|    11 | Suresh  |     60 | Operations |
+|    11 | Suresh  |     50 | Marketing  |
+|    11 | Suresh  |     40 | Sales      |
+|    11 | Suresh  |     30 | Finance    |
+|    11 | Suresh  |     20 | HR         |
+|    11 | Suresh  |     10 | IT         |
+|    12 | Meera   |     60 | Operations |
+|    12 | Meera   |     50 | Marketing  |
+|    12 | Meera   |     40 | Sales      |
+|    12 | Meera   |     30 | Finance    |
+|    12 | Meera   |     20 | HR         |
+|    12 | Meera   |     10 | IT         |
++-------+---------+--------+------------+
+
+
+2.	Write a SQL query to perform an INNER JOIN between Emp and Dept tables displaying EmpName and DeptName.
+
+elect emp.empid,emp.empname,dept.deptid,dept.deptname from emp inner join dept on emp.deptid=dept.deptid;
+
++-------+---------+--------+-----------+
+| empid | empname | deptid | deptname  |
++-------+---------+--------+-----------+
+|     1 | Amit    |     10 | IT        |
+|     2 | Priya   |     10 | IT        |
+|     9 | Rohit   |     10 | IT        |
+|     3 | Rahul   |     20 | HR        |
+|    10 | Anjali  |     20 | HR        |
+|     4 | Sneha   |     30 | Finance   |
+|     5 | Vikas   |     30 | Finance   |
+|    12 | Meera   |     30 | Finance   |
+|     6 | Neha    |     40 | Sales     |
+|     7 | Karan   |     40 | Sales     |
+|     8 | Pooja   |     50 | Marketing |
++-------+---------+--------+-----------+
+
+3.	Write a SQL query to perform a LEFT OUTER JOIN between Emp and Dept tables to display all employees along with their department information, including employees without a department.
+
+ select emp.empid,emp.empname,dept.deptid,dept.deptname, dept.location 
+ from emp left join dept 
+ on emp.deptid=dept.deptid;
+ 
+ +-------+---------+--------+-----------+----------+
+| empid | empname | deptid | deptname  | location |
++-------+---------+--------+-----------+----------+
+|     1 | Amit    |     10 | IT        | Mumbai   |
+|     2 | Priya   |     10 | IT        | Mumbai   |
+|     3 | Rahul   |     20 | HR        | Pune     |
+|     4 | Sneha   |     30 | Finance   | Mumbai   |
+|     5 | Vikas   |     30 | Finance   | Mumbai   |
+|     6 | Neha    |     40 | Sales     | Nashik   |
+|     7 | Karan   |     40 | Sales     | Nashik   |
+|     8 | Pooja   |     50 | Marketing | Mumbai   |
+|     9 | Rohit   |     10 | IT        | Mumbai   |
+|    10 | Anjali  |     20 | HR        | Pune     |
+|    11 | Suresh  |   NULL | NULL      | NULL     |
+|    12 | Meera   |     30 | Finance   | Mumbai   |
++-------+---------+--------+-----------+----------+
+
+4.	Write a SQL query to perform a RIGHT OUTER JOIN between Emp and Dept tables.
+
+select emp.empid,emp.empname,dept.deptid,dept.deptname, dept.location
+ from emp right join dept 
+ on emp.deptid=dept.deptid;
+ 
+ +-------+---------+--------+------------+----------+
+| empid | empname | deptid | deptname   | location |
++-------+---------+--------+------------+----------+
+|     1 | Amit    |     10 | IT         | Mumbai   |
+|     2 | Priya   |     10 | IT         | Mumbai   |
+|     9 | Rohit   |     10 | IT         | Mumbai   |
+|     3 | Rahul   |     20 | HR         | Pune     |
+|    10 | Anjali  |     20 | HR         | Pune     |
+|     4 | Sneha   |     30 | Finance    | Mumbai   |
+|     5 | Vikas   |     30 | Finance    | Mumbai   |
+|    12 | Meera   |     30 | Finance    | Mumbai   |
+|     6 | Neha    |     40 | Sales      | Nashik   |
+|     7 | Karan   |     40 | Sales      | Nashik   |
+|     8 | Pooja   |     50 | Marketing  | Mumbai   |
+|  NULL | NULL    |     60 | Operations | Pune     |
++-------+---------+--------+------------+----------+
+
+5.	Write a SQL query to perform a NATURAL JOIN between Emp and Dept.
+
+select * from emp natural join dept;
+
++--------+-------+---------+----------+-----------+-----------+----------+
+| deptid | empid | empname | salary   | managerid | deptname  | location |
++--------+-------+---------+----------+-----------+-----------+----------+
+|     10 |     1 | Amit    | 60000.00 |      NULL | IT        | Mumbai   |
+|     10 |     2 | Priya   | 75000.00 |         1 | IT        | Mumbai   |
+|     10 |     9 | Rohit   | 50000.00 |         1 | IT        | Mumbai   |
+|     20 |     3 | Rahul   | 45000.00 |         1 | HR        | Pune     |
+|     20 |    10 | Anjali  | 70000.00 |         3 | HR        | Pune     |
+|     30 |     4 | Sneha   | 80000.00 |      NULL | Finance   | Mumbai   |
+|     30 |     5 | Vikas   | 55000.00 |         4 | Finance   | Mumbai   |
+|     30 |    12 | Meera   | 85000.00 |         4 | Finance   | Mumbai   |
+|     40 |     6 | Neha    | 90000.00 |      NULL | Sales     | Nashik   |
+|     40 |     7 | Karan   | 40000.00 |         6 | Sales     | Nashik   |
+|     50 |     8 | Pooja   | 65000.00 |      NULL | Marketing | Mumbai   |
++--------+-------+---------+----------+-----------+-----------+----------+
+
+6.	Write a SQL query to perform a CROSS JOIN between Emp and Project table.
+
+ select emp.empid,emp.empname,project.projectid,
+ project.projectname,project.budget,project.deptid 
+ from emp cross join project;
+ 
+ +-------+---------+-----------+---------------------+-----------+--------+
+| empid | empname | projectid | projectname         | budget    | deptid |
++-------+---------+-----------+---------------------+-----------+--------+
+|     1 | Amit    |       106 | Inventory System    | 300000.00 |     10 |
+|     1 | Amit    |       105 | Marketing Analytics | 250000.00 |     50 |
+|     1 | Amit    |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     1 | Amit    |       103 | Financial Dashboard | 350000.00 |     30 |
+|     1 | Amit    |       102 | Payroll System      | 200000.00 |     20 |
+|     1 | Amit    |       101 | Banking Application | 500000.00 |     10 |
+|     2 | Priya   |       106 | Inventory System    | 300000.00 |     10 |
+|     2 | Priya   |       105 | Marketing Analytics | 250000.00 |     50 |
+|     2 | Priya   |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     2 | Priya   |       103 | Financial Dashboard | 350000.00 |     30 |
+|     2 | Priya   |       102 | Payroll System      | 200000.00 |     20 |
+|     2 | Priya   |       101 | Banking Application | 500000.00 |     10 |
+|     3 | Rahul   |       106 | Inventory System    | 300000.00 |     10 |
+|     3 | Rahul   |       105 | Marketing Analytics | 250000.00 |     50 |
+|     3 | Rahul   |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     3 | Rahul   |       103 | Financial Dashboard | 350000.00 |     30 |
+|     3 | Rahul   |       102 | Payroll System      | 200000.00 |     20 |
+|     3 | Rahul   |       101 | Banking Application | 500000.00 |     10 |
+|     4 | Sneha   |       106 | Inventory System    | 300000.00 |     10 |
+|     4 | Sneha   |       105 | Marketing Analytics | 250000.00 |     50 |
+|     4 | Sneha   |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     4 | Sneha   |       103 | Financial Dashboard | 350000.00 |     30 |
+|     4 | Sneha   |       102 | Payroll System      | 200000.00 |     20 |
+|     4 | Sneha   |       101 | Banking Application | 500000.00 |     10 |
+|     5 | Vikas   |       106 | Inventory System    | 300000.00 |     10 |
+|     5 | Vikas   |       105 | Marketing Analytics | 250000.00 |     50 |
+|     5 | Vikas   |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     5 | Vikas   |       103 | Financial Dashboard | 350000.00 |     30 |
+|     5 | Vikas   |       102 | Payroll System      | 200000.00 |     20 |
+|     5 | Vikas   |       101 | Banking Application | 500000.00 |     10 |
+|     6 | Neha    |       106 | Inventory System    | 300000.00 |     10 |
+|     6 | Neha    |       105 | Marketing Analytics | 250000.00 |     50 |
+|     6 | Neha    |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     6 | Neha    |       103 | Financial Dashboard | 350000.00 |     30 |
+|     6 | Neha    |       102 | Payroll System      | 200000.00 |     20 |
+|     6 | Neha    |       101 | Banking Application | 500000.00 |     10 |
+|     7 | Karan   |       106 | Inventory System    | 300000.00 |     10 |
+|     7 | Karan   |       105 | Marketing Analytics | 250000.00 |     50 |
+|     7 | Karan   |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     7 | Karan   |       103 | Financial Dashboard | 350000.00 |     30 |
+|     7 | Karan   |       102 | Payroll System      | 200000.00 |     20 |
+|     7 | Karan   |       101 | Banking Application | 500000.00 |     10 |
+|     8 | Pooja   |       106 | Inventory System    | 300000.00 |     10 |
+|     8 | Pooja   |       105 | Marketing Analytics | 250000.00 |     50 |
+|     8 | Pooja   |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     8 | Pooja   |       103 | Financial Dashboard | 350000.00 |     30 |
+|     8 | Pooja   |       102 | Payroll System      | 200000.00 |     20 |
+|     8 | Pooja   |       101 | Banking Application | 500000.00 |     10 |
+|     9 | Rohit   |       106 | Inventory System    | 300000.00 |     10 |
+|     9 | Rohit   |       105 | Marketing Analytics | 250000.00 |     50 |
+|     9 | Rohit   |       104 | E-Commerce Website  | 450000.00 |     40 |
+|     9 | Rohit   |       103 | Financial Dashboard | 350000.00 |     30 |
+|     9 | Rohit   |       102 | Payroll System      | 200000.00 |     20 |
+|     9 | Rohit   |       101 | Banking Application | 500000.00 |     10 |
+|    10 | Anjali  |       106 | Inventory System    | 300000.00 |     10 |
+|    10 | Anjali  |       105 | Marketing Analytics | 250000.00 |     50 |
+|    10 | Anjali  |       104 | E-Commerce Website  | 450000.00 |     40 |
+|    10 | Anjali  |       103 | Financial Dashboard | 350000.00 |     30 |
+|    10 | Anjali  |       102 | Payroll System      | 200000.00 |     20 |
+|    10 | Anjali  |       101 | Banking Application | 500000.00 |     10 |
+|    11 | Suresh  |       106 | Inventory System    | 300000.00 |     10 |
+|    11 | Suresh  |       105 | Marketing Analytics | 250000.00 |     50 |
+|    11 | Suresh  |       104 | E-Commerce Website  | 450000.00 |     40 |
+|    11 | Suresh  |       103 | Financial Dashboard | 350000.00 |     30 |
+|    11 | Suresh  |       102 | Payroll System      | 200000.00 |     20 |
+|    11 | Suresh  |       101 | Banking Application | 500000.00 |     10 |
+|    12 | Meera   |       106 | Inventory System    | 300000.00 |     10 |
+|    12 | Meera   |       105 | Marketing Analytics | 250000.00 |     50 |
+|    12 | Meera   |       104 | E-Commerce Website  | 450000.00 |     40 |
+|    12 | Meera   |       103 | Financial Dashboard | 350000.00 |     30 |
+|    12 | Meera   |       102 | Payroll System      | 200000.00 |     20 |
+|    12 | Meera   |       101 | Banking Application | 500000.00 |     10 |
++-------+---------+-----------+---------------------+-----------+--------+
+ 
+
+7.	Write a SQL query to create a new table EmpBackup with the same structure as Emp but no data.
+
+create empBackup like emp;
+
++-----------+---------------+------+-----+---------+----------------+
+| Field     | Type          | Null | Key | Default | Extra          |
++-----------+---------------+------+-----+---------+----------------+
+| empid     | int           | NO   | PRI | NULL    | auto_increment |
+| empname   | varchar(50)   | NO   |     | NULL    |                |
+| salary    | decimal(10,2) | YES  |     | NULL    |                |
+| deptid    | int           | YES  | MUL | NULL    |                |
+| managerid | int           | YES  | MUL | NULL    |                |
++-----------+---------------+------+-----+---------+----------------+
+
+
+8.	Write a SQL query to copy all data from Emp into EmpBackup table.
+
+insert into empBackup select * from emp;
+ select * from empBackup;
+ 
++-------+---------+----------+--------+-----------+
+| empid | empname | salary   | deptid | managerid |
++-------+---------+----------+--------+-----------+
+|     1 | Amit    | 60000.00 |     10 |      NULL |
+|     2 | Priya   | 75000.00 |     10 |         1 |
+|     3 | Rahul   | 45000.00 |     20 |         1 |
+|     4 | Sneha   | 80000.00 |     30 |      NULL |
+|     5 | Vikas   | 55000.00 |     30 |         4 |
+|     6 | Neha    | 90000.00 |     40 |      NULL |
+|     7 | Karan   | 40000.00 |     40 |         6 |
+|     8 | Pooja   | 65000.00 |     50 |      NULL |
+|     9 | Rohit   | 50000.00 |     10 |         1 |
+|    10 | Anjali  | 70000.00 |     20 |         3 |
+|    11 | Suresh  | 35000.00 |   NULL |         1 |
+|    12 | Meera   | 85000.00 |     30 |         4 |
++-------+---------+----------+--------+-----------+
+
+9.	Write a SQL query to create a new table ProjectArchive with the same structure and data as Project.
+
+create table projectArchive as select * from project;
+SELECT * FROM ProjectArchive;
+
++-----------+---------------------+-----------+--------+
+| projectid | projectname         | budget    | deptid |
++-----------+---------------------+-----------+--------+
+|       101 | Banking Application | 500000.00 |     10 |
+|       102 | Payroll System      | 200000.00 |     20 |
+|       103 | Financial Dashboard | 350000.00 |     30 |
+|       104 | E-Commerce Website  | 450000.00 |     40 |
+|       105 | Marketing Analytics | 250000.00 |     50 |
+|       106 | Inventory System    | 300000.00 |     10 |
++-----------+---------------------+-----------+--------+
+
+
+
+
+11.	Write a SQL query using a subquery to find all employees whose salary is greater than the average salary of all employees.
+12.	Write a SQL query using a subquery in WHERE clause to find employees working in departments located in 'Mumbai'.
+13.	Write a SQL query to display all departments where the number of employees is greater than 5, using a subquery.
+14.	 Write a subqueries for find out Max salary of employee.
+15.	Write a  self join query for each table.

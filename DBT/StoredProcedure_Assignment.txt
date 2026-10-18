@@ -1,0 +1,249 @@
+Q1. Check Even or Odd  
+Create a stored procedure check_even_odd that accepts an integer and displays whether the number is Even or 
+Odd. 
+
+DELIMITER //
+
+CREATE PROCEDURE check_even_odd(IN num INT)
+BEGIN
+    IF num MOD 2 = 0 THEN
+        SELECT 'Even' AS Result;
+    ELSE
+        SELECT 'Odd' AS Result;
+    END IF;
+END //
+
+DELIMITER ;
+
+
+
+Q2. Calculate Simple Interest  
+Create a stored procedure calculate_interest that accepts principal amount, rate of interest, and time in years 
+and calculates Simple Interest.
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE calculate_interest(
+    IN p_principal DECIMAL(10,2),
+    IN p_rate DECIMAL(5,2),
+    IN p_time INT
+)
+BEGIN
+    DECLARE si DECIMAL(10,2);
+
+    SET si = (p_principal * p_rate * p_time) / 100;
+
+    SELECT
+        p_principal AS Principal,
+        p_rate AS Rate,
+        p_time AS Time_Years,
+        si AS Simple_Interest;
+END //
+
+DELIMITER ;
+
+
+
+Q.3. Create a stored procedure calculate_grade that accepts student ID, student name, and marks and displays the 
+student's grade.
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE calculate_grade(
+    IN p_id INT,
+    IN p_name VARCHAR(50),
+    IN p_marks INT
+)
+BEGIN
+    DECLARE v_grade VARCHAR(2);
+
+    IF p_marks >= 90 AND p_marks <= 100 THEN
+        SET v_grade = 'A+';
+    ELSEIF p_marks >= 80 THEN
+        SET v_grade = 'A';
+    ELSEIF p_marks >= 70 THEN
+        SET v_grade = 'B';
+    ELSEIF p_marks >= 60 THEN
+        SET v_grade = 'C';
+    ELSEIF p_marks >= 50 THEN
+        SET v_grade = 'D';
+    ELSE
+        SET v_grade = 'F';
+    END IF;
+
+    SELECT
+        p_id AS Student_ID,
+        p_name AS Student_Name,
+        p_marks AS Marks,
+        v_grade AS Grade;
+END //
+
+DELIMITER ;
+
+
+
+Q4. Calculate Employee Bonus   
+Create a stored procedure calculate_bonus that accepts employee name and salary and calculates the bonus 
+according to the following rules. Display employee name, salary, bonus percentage, bonus amount, and total 
+salary
+
+
+DELIMITER //
+
+CREATE PROCEDURE calculate_bonus(
+    IN p_name VARCHAR(50),
+    IN p_salary DECIMAL(10,2)
+)
+BEGIN
+    DECLARE v_percentage INT;
+    DECLARE v_bonus DECIMAL(10,2);
+    DECLARE v_total DECIMAL(10,2);
+
+    IF p_salary >= 100000 THEN
+        SET v_percentage = 20;
+    ELSEIF p_salary >= 50000 THEN
+        SET v_percentage = 15;
+    ELSEIF p_salary >= 30000 THEN
+        SET v_percentage = 10;
+    ELSE
+        SET v_percentage = 5;
+    END IF;
+
+    SET v_bonus = p_salary * v_percentage / 100;
+    SET v_total = p_salary + v_bonus;
+
+    SELECT
+        p_name AS Employee_Name,
+        p_salary AS Salary,
+        v_percentage AS Bonus_Percentage,
+        v_bonus AS Bonus_Amount,
+        v_total AS Total_Salary;
+END //
+
+DELIMITER ;
+
+
+Q5. Find Maximum of Three Numbers — 
+Create a stored procedure find_maximum that accepts three integers and displays the largest number. 
+
+
+DELIMITER //
+
+CREATE PROCEDURE find_maximum(
+    IN a INT,
+    IN b INT,
+    IN c INT
+)
+BEGIN
+    DECLARE v_max INT;
+
+    IF a >= b AND a >= c THEN
+        SET v_max = a;
+    ELSEIF b >= a AND b >= c THEN
+        SET v_max = b;
+    ELSE
+        SET v_max = c;
+    END IF;
+
+    SELECT v_max AS Maximum_Number;
+END //
+
+DELIMITER ;
+
+
+
+Q6. Employee Salary Analysis  
+Create a stored procedure salary_analysis that accepts employee name and salary. Determine the salary 
+category and allowance, then calculate the final salary. Display employee name, salary, category, allowance 
+percentage, allowance amount, and final salary.
+
+
+DELIMITER //
+
+CREATE PROCEDURE salary_analysis(
+    IN p_name VARCHAR(50),
+    IN p_salary DECIMAL(10,2)
+)
+BEGIN
+    DECLARE v_category VARCHAR(20);
+    DECLARE v_percentage INT;
+    DECLARE v_allowance DECIMAL(10,2);
+    DECLARE v_final_salary DECIMAL(10,2);
+
+    IF p_salary >= 100000 THEN
+        SET v_category = 'High';
+        SET v_percentage = 20;
+    ELSEIF p_salary >= 50000 THEN
+        SET v_category = 'Medium';
+        SET v_percentage = 15;
+    ELSE
+        SET v_category = 'Low';
+        SET v_percentage = 10;
+    END IF;
+
+    SET v_allowance = p_salary * v_percentage / 100;
+    SET v_final_salary = p_salary + v_allowance;
+
+    SELECT
+        p_name AS Employee_Name,
+        p_salary AS Salary,
+        v_category AS Category,
+        v_percentage AS Allowance_Percentage,
+        v_allowance AS Allowance_Amount,
+        v_final_salary AS Final_Salary;
+END //
+
+DELIMITER ;
+
+
+
+Q7. Electricity Bill Calculation  
+Create a stored procedure calculate_electricity_bill that accepts consumer name and units consumed. Calculate 
+the electricity bill using the slab-wise rates below. Display consumer name, units consumed, and total bill 
+amount.
+
+
+
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE calculate_electricity_bill(
+    IN p_name VARCHAR(50),
+    IN p_units INT
+)
+BEGIN
+    DECLARE v_bill DECIMAL(10,2);
+
+    IF p_units <= 100 THEN
+        SET v_bill = p_units * 2;
+
+    ELSEIF p_units <= 200 THEN
+        SET v_bill = (100 * 2)
+                   + ((p_units - 100) * 3);
+
+    ELSEIF p_units <= 400 THEN
+        SET v_bill = (100 * 2)
+                   + (100 * 3)
+                   + ((p_units - 200) * 5);
+
+    ELSE
+        SET v_bill = (100 * 2)
+                   + (100 * 3)
+                   + (200 * 5)
+                   + ((p_units - 400) * 7);
+    END IF;
+
+    SELECT
+        p_name AS Consumer_Name,
+        p_units AS Units_Consumed,
+        v_bill AS Total_Bill;
+END //
+
+DELIMITER ;
+
