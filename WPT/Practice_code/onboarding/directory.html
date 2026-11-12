@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechNova Employee Directory</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav id="main-nav">
+
+        <h2>TechNova Solutions</h2>
+
+        <div>
+            <a href="login.html">Login</a>
+            <a href="directory.html">Directory</a>
+            <a href="onboarding.html">Onboarding</a>
+        </div>
+
+    </nav>
+
+    <main class="page-container">
+
+        <h1>Employee Directory</h1>
+
+        <p>View and manage employee records.</p>
+
+        <button type="button" onclick="loadEmployees()">
+            Load Employees
+        </button>
+
+        <p id="statusMessage"></p>
+
+        <h2>Search Employees</h2>
+
+        <label for="searchField">Search By:</label>
+
+        <select id="searchField" onchange="searchEmployees()">
+
+            <option value="name">Name</option>
+
+            <option value="email">Email</option>
+
+            <option value="username">Username</option>
+
+        </select>
+
+        <input
+            type="text"
+            id="searchText"
+            placeholder="Enter search text"
+            onkeyup="searchEmployees()"
+        >
+
+        <h2>Add Employee</h2>
+
+        <form id="addEmployeeForm" onsubmit="return addEmployee()">
+
+            <label for="newName">Employee Name:</label>
+
+            <input
+                type="text"
+                id="newName"
+                placeholder="Enter employee name"
+                required
+            >
+
+            <label for="newDepartment">Department:</label>
+
+            <select id="newDepartment" required>
+
+                <option value="">Select Department</option>
+
+                <option value="IT">IT</option>
+
+                <option value="HR">HR</option>
+
+                <option value="Finance">Finance</option>
+
+                <option value="Marketing">Marketing</option>
+
+                <option value="Sales">Sales</option>
+
+            </select>
+
+            <button type="submit">Add Employee</button>
+
+        </form>
+
+        <h2>Employee Records</h2>
+
+        <div class="table-container">
+
+            <table border="1" cellpadding="10" cellspacing="0">
+
+                <thead>
+
+                    <tr>
+                        <th>Emp ID</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="employeeTable">
+
+                    <!-- JavaScript adds employee rows here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p id="totalEmployees">Total employees: 0</p>
+
+    </main>
+
+    <script src="js/directory.js"></script>
+
+</body>
+
+</html>

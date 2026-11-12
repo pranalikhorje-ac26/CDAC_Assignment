@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechNova HR Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav id="main-nav">
+        <h2>TechNova Solutions</h2>
+
+        <div>
+            <a href="login.html">Login</a>
+            <a href="directory.html">Directory</a>
+            <a href="onboarding.html">Onboarding</a>
+        </div>
+    </nav>
+
+    <main class="login-container">
+
+        <div class="card">
+
+            <h1>Employee Login</h1>
+
+            <p>Welcome to the TechNova HR Portal</p>
+
+            <form onsubmit="return validate()">
+
+                <label for="username">Username:</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter username"
+                    onkeyup="checkUsername()"
+                >
+
+                <span id="usernameError" class="error"></span>
+
+                <label for="password">Password:</label>
+
+                <div class="password-row">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        onkeyup="checkPassword()"
+                    >
+
+                    <button type="button" onclick="togglePassword()">
+                        Show
+                    </button>
+
+                </div>
+
+                <span id="passwordError" class="error"></span>
+
+                <button type="submit" class="submit-btn">
+                    Login
+                </button>
+
+                <p id="loginMessage"></p>
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
