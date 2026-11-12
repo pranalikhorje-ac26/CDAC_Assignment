@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coastal Brew Cafe</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="landing.css">
+
+    <!-- Internal CSS: page-specific styling -->
+    <style>
+        #welcome {
+            text-align: center;
+            color: #a77738;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header id="header">
+
+        <nav class="navbar">
+            <h2>Coastal Brew <span>Cafe</span></h2>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Menu</a>
+                <a href="#order-section">Order</a>
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- Banner -->
+    <section id="home">
+
+        <div class="hero-content">
+            <p>WELCOME TO OUR CAFE</p>
+
+            <h1>Fresh Coffee, Coastal Vibes</h1>
+
+            <p>
+                Enjoy delicious coffee, tasty snacks and a peaceful
+                atmosphere at Coastal Brew Cafe.
+            </p>
+
+            <a href="#order-section" class="button">Order Now</a>
+        </div>
+
+    </section>
+
+    <main>
+
+        <!-- Introduction -->
+        <section id="about">
+
+            <h2 id="welcome">About Coastal Brew Cafe</h2>
+
+            <p class="description">
+                We serve fresh coffee and delicious snacks made with
+                <span class="highlight">love and quality ingredients.</span>
+                Visit us with your friends and family.
+            </p>
+
+        </section>
+
+        <!-- Ordering information and opening hours -->
+        <section class="info-grid">
+
+            <div class="info-card" id="ordering">
+
+                <h2>How to Order</h2>
+
+                <ol>
+                    <li>Choose your favourite item.</li>
+                    <li>Select the quantity.</li>
+                    <li>Add the item to your cart.</li>
+                    <li>Select your delivery area.</li>
+                    <li>Place your order.</li>
+                </ol>
+
+            </div>
+
+            <div class="info-card" id="opening-hours">
+
+                <h2>Opening Hours</h2>
+
+                <ul>
+                    <li>Monday - Friday: 9 AM - 9 PM</li>
+                    <li>Saturday: 10 AM - 10 PM</li>
+                    <li>Sunday: 10 AM - 8 PM</li>
+                </ul>
+
+                <p>We look forward to serving you!</p>
+
+            </div>
+
+        </section>
+
+        <!-- Menu cards -->
+        <section id="services">
+
+            <h2>Our Popular Menu</h2>
+
+            <p class="description">
+                Explore some of our favourite items.
+            </p>
+
+            <div class="card-container">
+
+                <div class="service-card">
+
+                    <h3>Konkan Cold Coffee</h3>
+
+                    <p>
+                        Chilled coffee prepared with creamy milk
+                        and rich coffee flavour.
+                    </p>
+
+                    <p class="price">₹120</p>
+
+                </div>
+
+                <div class="service-card featured-card">
+
+                    <h3>Coastal Special Combo</h3>
+
+                    <p>
+                        A delicious combination of a sandwich
+                        and your favourite drink.
+                    </p>
+
+                    <p class="price">₹199</p>
+
+                </div>
+
+                <div class="service-card">
+
+                    <h3>Chocolate Brownie</h3>
+
+                    <p>
+                        A soft and delicious chocolate brownie
+                        for dessert lovers.
+                    </p>
+
+                    <p class="price">₹100</p>
+
+                </div>
+
+            </div>
+
+            <p class="description">
+                Explore more coffee and food ideas on
+                <a href="https://www.starbucks.com/" target="_blank"
+                   rel="noopener noreferrer">this coffee website</a>.
+            </p>
+
+        </section>
+
+        <!-- Order Calculator: Assignment 2 -->
+        <section id="order-section">
+
+            <h2>Place Your Order</h2>
+
+            <p>Select an item and add it to your cart.</p>
+
+            <!-- Item dropdown is filled using JavaScript -->
+            <label for="item">Choose Item:</label>
+
+            <select id="item">
+                <option value="">Select an item</option>
+            </select>
+
+            <br><br>
+
+            <label for="quantity">Quantity:</label>
+
+            <input type="number" id="quantity" value="1" min="1">
+
+            <button type="button" onclick="addItem()">
+                Add to Cart
+            </button>
+
+            <p id="error"></p>
+
+            <h3>Your Cart</h3>
+
+            <ul id="cart"></ul>
+
+            <br>
+
+            <label for="area">Delivery Area:</label>
+
+            <select id="area" onchange="calculateBill()">
+
+                <option value="pickup">Pickup - ₹0</option>
+
+                <option value="nearby">Nearby - ₹30</option>
+
+                <option value="city">City - ₹50</option>
+
+            </select>
+
+            <h3>Bill Details</h3>
+
+            <p id="bill">Your bill will appear here.</p>
+
+            <button type="button" onclick="placeOrder()">
+                Place Order
+            </button>
+
+            <p id="message"></p>
+
+            <p id="offer"></p>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+
+        <p>© 2026 Coastal Brew Cafe. All rights reserved.</p>
+
+    </footer>
+
+    <!-- Inline CSS example: styling this button only -->
+    <!-- Inline CSS has higher priority than normal external CSS rules. -->
+    <a href="#order-section"
+       class="fixed-button"
+       style="text-decoration: none;">
+        Order Now
+    </a>
+
+    <!-- External JavaScript -->
+    <script src="landing.js"></script>
+
+</body>
+
+</html>
