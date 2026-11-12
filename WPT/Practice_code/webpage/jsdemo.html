@@ -1,0 +1,638 @@
+<html>
+    <head>
+        <title>JS demo</title>
+
+    </head>
+    <body>
+
+
+        <script>
+            // print text on  in browser, console adn pop-up
+            // document.write("Hello World");
+            // console.log("hello console");
+            // window.alert("Hie User");
+            
+
+
+
+
+
+        // variable declaration : 
+            // a = 4;
+            // console.log(a);
+
+
+            // a = 4;
+            // console.log(typeof a);
+            // console.log(a);
+            // a = "Hello";
+            // console.log(typeof a);
+            // console.log(a);
+
+            // b=true;
+            // console.log(b);
+            // console.log(typeof b);
+
+
+            // obj=null;
+            // console.log(typeof obj);
+
+            // obj1 = undefine;
+            // console.log(typeof obj1);
+
+
+            // function add(n1,n2){
+            //     n3=n1+n2;
+            //     return n3;
+            // }
+
+            // result = add(2,3);
+            // console.log(result);
+
+            //global
+            // a = 5;
+            // function show(){
+            //     console.log("inside show a=",a);
+            // }
+
+            // show();
+            //     console.log("outside show a=",a)
+
+            // local variable
+            // function show(){
+            //     a = 5;
+            //     console.log("inside show a=",a);
+            // }
+
+            // show();
+            //     console.log("outside show a=",a)
+
+        // nullish 
+
+            // var x = false;
+            // var y = x || "hi";
+
+            // console.log(y);
+
+
+        // ARRAY
+        
+            // var arr = [10,20,30,"hello",true];
+            // console.log(arr);
+            // console.log(arr.length);
+            // for(var i=0;i<arr.length;i++){
+            //     console.log(arr[i]);
+            // }
+
+        // 2D arrya means multiple 1D array collection
+
+            // var arr = [[10,20,30],[40,50,60],[70,80,90]];
+            // console.log(arr);
+            // console.log(arr.length);
+            // console.log(arr[0]);
+            // console.log(arr[0][0]);
+
+            // for(var i=0;i<arr.length;i++){
+            //     for(var j=0;j<arr[i].length;j++){
+            //         console.log(arr[i][j]);
+            //     }
+            // }
+
+            // var arr = [[10,20,30],[40,50,60,70],[80]]
+            // for(var i=0;i<arr.length;i++){
+            //     for(var j=0;j<arr[i].length;j++){
+            //         console.log(arr[i][j]);
+            //     }
+            // }
+
+// *****************************************************************
+        // JSON: javascript object notation 
+        // its a new way to representing a data
+        // storing a data in key and value pairs
+
+        // {k:v ; k:v ; k:v}
+        
+        // var student = {id:101 , name:"Ramesh" , marks:89, phone:"1234567890"};
+        // console.log(student);
+
+        // console.log(student.id);
+        // console.log(student.name);
+        // console.log(student.marks);
+        // console.log(student.phone);
+
+
+        //for any web application the json format has become a standard for data transer 
+        // between client and server
+
+        // var student = {
+        //     id:101 , 
+        //     name:"Ramesh" , 
+        //     marks:89, 
+        //     phone:["1234567890","2345667801"],
+        //     // address: {
+        //     //     houseNo :"a-78",
+        //     //     state: "maharastra"
+
+        //     // }
+        // };
+        // console.log(student);
+
+        // console.log(student.id);
+        // console.log(student.name);
+        // console.log(student.marks);
+        // console.log(student.phone[0]); // first phone number (because here used array)
+        // console.log(student.address);
+        // // console.log(student.address.state);
+
+        // // OPTIONAL CHAINING OPERATOR
+        // //  if key undefine don't read or only read futherkeys when t is define
+        // // ?.
+        // console.log(student?.address?.state);/
+
+
+// ************************************************************************************************
+        // ARRAY WITH JSON OBJECTS
+
+    //      var studentList = [{
+    //         id:101 , 
+    //         name:"Ramesh" , 
+    //         marks:89, 
+    //         phone:["1234567890","2345667801"],
+    //         address: {
+    //             houseNo :"a-78",
+    //             state: "maharastra"
+
+    //         }
+    //     },
+    //     {
+    //     id:102 , 
+    //         name:"rashmi" , 
+    //         marks:93, 
+    //         phone:["123455430","65427890","456789034"],
+    //         address: {
+    //             houseNo :"a-65",
+    //             state: "kerla"
+
+    //         }
+    //     },
+    //     {
+    //     id:103 , 
+    //         name:"rashmi" , 
+    //         marks:93, 
+    //         phone:["188888888","7888888"],
+    //         address: {
+    //             houseNo :"B-90",
+    //             state: "Mumbai"
+
+    //         }
+    //     }
+    // ];
+    // console.log(studentList);
+    // console.log(studentList[0]);
+    // console.log(studentList[0].name);
+    // for(var i=0; i<studentList.length;i++){
+    //     console.log(studentList[i].id,studentList[i].name,studentList[i].marks,studentList[i].address,studentList[i].phone);
+    //     for(var j=0; j<studentList[i].phone.length; j++){
+    //         console.log(studentList[i].phone[j]);
+    //     }
+    // }
+    // HOMEWORK:find student bases on id, find topper,and find fail
+
+    // var product ={
+    //     pid:111, 
+    //     name:"keyboard", 
+    //     price:7555,
+    //     qty:4,
+    // address:{houseNo:"B-89",state:"Nagpur"}};
+
+    // // DESTRUCTURING OF THE ARRAY
+    
+    // const {pid,name,price,qty,address} = product;
+    // const {houseNo,state} = address;
+    // console.log(pid);
+    // console.log(name);
+    // console.log(price);
+    // console.log(qty);
+    // console.log(address);
+    // console.log(houseNo,state);
+
+    // var data =[10,20,30];
+
+    // const [x,y,z] = data;
+    // console.log(x);
+    // console.log(y);
+    // console.log(z);
+
+
+    // SPRADE OPERATOR ...
+    // const o1 = {x:32 , y:80};
+    // const o2 = {z:50};
+    // const o3 ={...o1 , ...o2};
+
+    // console.log(o3);
+
+
+    // const o1 = [10,20,30];
+    // const o2 = [40,50];
+    // const o3 ={...o1,...o2};
+
+    // console.log(o3);
+
+
+
+
+
+
+    // *****************************************************
+
+    // CLASS : 
+
+    // class Product {
+    //     constructor(){
+    //         console.log("cons.called");
+    //         this.id=101; //need to manually write this keyword by developer
+    //         this.name="keyboard";
+    //     }
+    // }
+
+    //  var obj1 = new Product();
+    // console.log(obj1.id,obj1.name);
+
+    // var obj2 = new Product();
+    // console.log(obj2.id,obj2.name);
+
+// PARAMETERIZE CONSTRUCTOR: 
+
+    // class Product {
+    // constructor(id, name){
+    //         console.log("cons.called");
+    //         this.id=id; 
+    //         this.name=name;
+    //     }
+    // }
+    //  var obj1 = new Product(101,"neha");
+    // console.log(obj1.id,obj1.name);
+
+    // var obj2 = new Product(102,"Mayur");
+    // console.log(obj2.id,obj2.name);
+
+
+    // *********************************************************************
+    // FUNCTION INSIDE CLASS : 
+
+    // class Product {
+    // constructor(id, name){
+    //         console.log("cons.called");
+    //         this.id=id; 
+    //         this.name=name;  
+    //     }
+    //     printDetails(){
+    //         console.log(this.id , this.name);
+            
+    //     }
+    // }
+    // var obj1 = new Product(101,"neha");
+    // obj1.printDetails();
+
+    // var obj2 = new Product(102,"Mayur");
+    // obj2.printDetails();
+
+
+    // ****************************************************************
+
+    // INHERITANCE
+    // class A{
+    //     constructor(){
+    //         this.x=10;
+    //     }
+    //     show(){
+    //         console.log("inside show x=",this.x);
+            
+    //     }
+    // }
+
+    // class B extends A{
+        
+    // }
+    // var bObj =new B();
+    // console.log(bObj.x);
+    
+    // bObj.show();
+
+
+
+    //   class A{
+    //     constructor(){
+    //         this.x=10;
+    //     }
+    //     show(){
+    //         console.log("inside show x=",this.x);
+            
+    //     }
+    // }
+
+    // class B extends A{
+    //     constructor(){
+    //         super();
+    //         this.y=20;
+    //     }
+        
+    // }
+    // var bObj =new B();
+    // console.log(bObj.y);
+    
+    // console.log(bObj.x);
+    
+    // bObj.show();
+// ******************************************
+    // TYPES :
+    // Single :
+    // Multilevel :
+    // Hierarchical :
+    // Multiple :  no native support for multiple inheritance--> typescript interface, mixins
+
+    // FUNCTION OVERLOADING :::
+    //   class A{
+    //     constructor(){
+    //         this.x=10;
+    //     }
+    //     show(){
+    //         console.log("inside show x=",this.x);
+            
+    //     }
+    // }
+
+    // class B extends A{
+    //     constructor(){
+    //         super();
+    //         this.y=20;
+    //     }
+    //     show(){
+    //         console.log("inside show y=",this.x);
+            
+    //     }
+        
+    // }
+    // var bObj =new B();
+    // console.log(bObj.y);
+    
+    // console.log(bObj.x);
+    
+    // bObj.show();
+
+// ***************************************************************
+
+    // CALLbACK FUNCTIONs :
+
+    // function show(arg){
+    //     console.log(arg);
+    // }
+    // function demo(){
+    //     console.log("Inside demo");
+        
+    // }
+    // show(demo);//we can pass a function as an argument of another function
+        // demo is a callback function
+        // a function which is pass as an argument of the another function is called callback function
+
+    
+    // function show(arg){
+    //     console.log(arg);
+    //     arg(); //calling a callback function
+    // }
+    // function demo(){
+    //     console.log("Inside demo");
+        
+    // }
+    // show(demo);//we can pass a function as an argument of another function
+    
+    
+// ****************************************************
+    // ANNONYMOUS FUNCTION ::::::::
+    // function show(arg){
+    //     console.log(arg);
+    //     arg(); //calling a callback function
+    // }
+
+    // show(function (){ //anonymous function
+    //     console.log("Inside demo");
+        
+    // });//we can pass a function as an argument of another function
+    
+// ***************************************************************
+
+    // function process(arg){
+    //     console.log("processing....",arg);
+    // }
+
+    // function start(arg){
+    //     console.log(arg);
+    //     arg(100);
+    // }
+
+    // start(process);
+// **************************************************
+
+    // let x = function(){
+    //     console.log("Anonymous fuction called");        
+    // }
+    // x();
+// ********************************************************
+    //  let x = function(){
+    //     console.log("Anonymous fuction called");        
+    // }
+    // console.log(typeof x);
+    
+    // x();
+// *******************************************************
+// ARROW FUNCTION:::
+
+// let sum = (x,y)=>{
+//     let z = x + y;
+//     return z
+// }
+// const rs = sum(4,4);
+// console.log(rs);
+
+// *******************************
+// only 1 statement
+// that istoo a return statement then use :
+
+// let sum =(x,y)=> x+y;
+// const rs = sum(4,4);
+// console.log(rs);
+
+// ***********************************
+// Single argument function :: (Like lambda function) ::  
+// let increment = n => n+5;
+
+// const rs=increment(3);
+// console.log(rs);
+
+// ********************************************
+
+// var arr = [10,45,32,76,45];
+
+// // foreach
+// arr.forEach(callback-func); //inside of the foreach function we have to pass a callback function
+// // and foreach going to call that callback function for each element of the array.
+
+
+// var arr = [10,45,32,76,45];
+// arr.forEach((value,index)=>{
+//     console.log(value,index);
+    
+// });
+
+
+//***************************************************
+// even numbers from this array
+// var arr = [10,45,32,76,45,78,61];
+// var evenArray = [];
+// arr.forEach((value,index)=>{
+//     if(value % 2 == 0){
+//         evenArray.push(value);
+//     }
+//     console.log(evenArray);
+// });
+// 
+
+// var arr = [10,45,32,76,45,78,61];
+// // var resultArray = arr.filter(callback-func);
+// var resultArray = arr.filter((value) =>{
+//     if(value % 2 === 0){
+//         return true;
+//     }
+//     else{
+//         return false;
+//     }
+// });
+
+// console.log(resultArray);
+
+// ORRRRRRRRR----------------->>>>>
+
+// var arr = [10,45,32,76,45,78,61];
+// // var resultArray = arr.filter(callback-func);
+// var resultArray = arr.filter(value =>value % 2 === 0 );
+
+// console.log(resultArray);
+
+
+// ******************************************************************
+//MAP FUNCTION :: 
+
+// var arr = [10,1,22,2,3,4,5,6];
+// //[10*2......]
+// // arr.map(callback-func);
+// let rs = arr.map(value=> value*2);
+// console.log(rs);
+
+// *******************************************************************
+
+// types of process in JS:
+// 1. Synchronous
+// 2. Asynchronous
+
+// setTimeout(callback-func, 1s);
+// function show(){
+//     console.log("Show called");   
+// }
+// console.log("logic started....");
+// setTimeout(show, 1000);   //asynchronously
+// console.log("logic ended...");
+
+
+// console.log("logic started....");
+// setTimeout(function show(){
+//     console.log("Show called");   
+// }, 1000);   //asynchronously
+// console.log("logic ended...");
+
+
+
+//sum ->1s, factorial ->3s, square->2s
+// console.log("Started calculating sum...");
+
+// setTimeout(()=>{
+//     var x=5;
+//     var y=2;
+//     var z=x+y;
+//     console.log("Sum is: ",z)
+// },1500);
+
+// console.log("Started claculating factorial...");
+// setTimeout(()=>{
+//     var n=5;
+//     var fact=1;
+//     for(var i=1;i<=n;i++){
+//         fact=fact*i;
+//     }
+//     console.log("Factorial  is: ",fact);
+// },3000);
+
+// console.log("Square claculating...");
+// setTimeout(()=>{
+//     var n=5;
+//     var sq = n*n;
+//     console.log("square is: ",sq);
+// },2000);
+
+
+
+
+//&&&&&&&&&&&&&&&&&&&___SUNDAY___25-10-2026&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+    
+    
+
+    
+
+
+    
+
+
+
+
+
+            
+
+
+
+            
+
+
+
+        
+
+
+
+
+
+        </script>
+    </body>
+</html>
+
+

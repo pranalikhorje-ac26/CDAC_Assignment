@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation</title>
+
+    <!-- <style> .highlight
+     { color: red;
+     font-weight: bold; 
+     font-size: 22px; 
+     }
+      </style> -->
+</head>
+
+<body>
+    <!-- <h2>JavaScript DOM Example</h2>
+
+    <p id="message">Welcome to JavaScript</p>
+
+    <button onclick="changeText()">Click Me</button>
+
+    <script>
+        function changeText() {
+            let p = document.getElementById("message");
+
+            p.textContent = "Text changed successfully!";
+            p.style.color = "red";
+            p.style.fontSize = "25px";
+        } -->
+
+
+        <!-- change text  -->
+<!-- <h2 id="heading">Welcome</h2> 
+<button onclick="changeText()">Change Text</button>
+<script>
+ function changeText() { 
+    document.getElementById("heading")
+    .textContent = "Welcome to JavaScript DOM"; 
+}
+
+    </script> -->
+
+
+
+<!-- change background colour -->
+<!-- <h2>Change Background Color</h2>
+ <button onclick="changeColor('red')">Red</button>
+  <button onclick="changeColor('green')">Green</button> 
+  <button onclick="changeColor('blue')">Blue</button>
+<script> function changeColor(color) 
+{
+     document.body.style.backgroundColor = color; 
+     } 
+     </script> -->
+
+
+
+
+
+    <!-- <h2>Enter Your Name</h2> 
+    <input type="text" id="username" placeholder="Enter your name"> 
+    <button onclick="displayMessage()">Submit</button>
+    <p id="result"></p>
+    <script> function displayMessage() 
+    {
+         let name = document.getElementById("username").value; 
+         if (name.trim() === "") { 
+            document.getElementById("result").textContent = "Please enter your name"; }
+        else { 
+            document.getElementById("result").textContent = "Hello, " + name + "! Welcome.";
+
+             } } </script> -->
+
+
+
+
+<!-- add two numbers -->
+
+<!-- <h2>Add Two numbers</h2>
+<label>First number </label>
+<input type="number" id="num1">
+<br><br>
+
+<label>Second number</label>
+<input type="number" id="num2">
+<br><br>
+
+<button onclick="addNumbers()">Add</button>
+
+<h3 id="result"></h3>
+<script>
+    function addNumbers(){
+        let a=Number(document.getElementById("num1").value);
+        let b=Number(document.getElementById("num2").value);
+
+        let result=a+b;
+        document.getElementById("result").textContent ="sum: " +result;
+    }
+
+</script> -->
+
+
+
+
+<!-- Show and Hide an Element -->
+
+<!-- <h2>Show and Hide Example</h2>
+ <p id="para">This is an important message.</p>
+  <button onclick="hideText()">Hide</button>
+   <button onclick="showText()">Show</button> 
+   <script> 
+   function hideText() 
+   { 
+     document.getElementById("para").style.display = "none";
+     }
+      function showText() 
+      { 
+        document.getElementById("para").style.display = "block";
+     } 
+
+</script> -->
+
+
+
+
+
+<!-- <h2>My Task List</h2>
+<input type="text" id="task" placeholder="Enter a task">
+<button onclick="addTask()">Add Task</button>
+<ul id="taskList"></ul>
+<script>
+     function addTask() {
+        let input = document.getElementById("task");
+        let task = input.value.trim();
+        if (task === "") {
+            alert("Please enter a task");
+            return;
+        }
+        let li = document.createElement("li");
+        let span = document.createElement("span");
+        span.textContent = task;
+        let deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.onclick = function () {
+            li.remove();
+        };
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+        document.getElementById("taskList").appendChild(li);
+        input.value = "";
+    }  -->
+
+
+
+
+
+
+
+    <!-- <p id="message">This is a sample paragraph.</p>
+     <button id="changeBtn">Apply Style</button>
+      <script> let message = document.querySelector("#message"); 
+      let button = document.querySelector("#changeBtn"); 
+      button.addEventListener("click", function () {
+         message.classList.add("highlight"); 
+        });
+    
+    </script>
+</script> -->
+
+
+
+
+<!-- <h2>Select Your Programming Language</h2> 
+<select id="language"> 
+    <option value="">--Select Language--</option>
+    <option value="C">C</option>
+    <option value="C++">C++</option>
+    <option value="Java">Java</option>
+    <option value="JavaScript">JavaScript</option>
+    </select> 
+    <button onclick="showLanguage()">Submit</button> 
+    <p id="result"></p>
+    <script> 
+    function showLanguage() 
+        {
+            let language = document.getElementById("language").value;
+            let result = document.getElementById("result"); 
+            if (language === "") {
+                result.textContent = "Please select a language";
+            } else { 
+                result.textContent = "Selected Language: " + language;
+            }
+        }
+ </script> -->
+
+
+
+ <!-- simple calculator -->
+
+<!-- 
+ <h2>Simple Calculator</h2> 
+ <input type="number" id="num1" placeholder="First number"> 
+ <br><br> 
+ <input type="number" id="num2" placeholder="Second number"> 
+ <br><br> 
+ <select id="operation"> 
+    <option value="+">Addition</option> 
+    <option value="-">Subtraction</option> 
+    <option value="*">Multiplication</option> 
+    <option value="/">Division</option> 
+    </select> 
+    <button onclick="calculate()">Calculate</button> 
+    
+    <h3 id="result"></h3> 
+    <script> 
+    function calculate()
+     {
+         let a = Number(document.getElementById("num1").value); 
+         let b = Number(document.getElementById("num2").value); 
+         let op = document.getElementById("operation").value;
+          let result; 
+          switch (op) {
+             case "+": 
+             result = a + b; 
+             break; 
+             
+             case "-": 
+             result = a - b; 
+             break; 
+             
+             case "*": 
+             result = a * b; 
+             break; 
+             
+             case "/": 
+             if (b === 0) {
+                 document.getElementById("result").textContent = "Cannot divide by zero"; 
+                 return;
+                 } 
+                 result = a / b; 
+                 break; 
+                }
+                 document.getElementById("result").textContent = "Result: " + result;
+                 }  -->
+
+
+
+
+
+                <div class="container">
+                    <h2>Student Marks Calculator</h2>
+                    <label>Subject 1:</label>
+                    <input type="number" id="m1" placeholder="Enter marks">
+                    <label>Subject 2:</label>
+                    <input type="number" id="m2" placeholder="Enter marks">
+                    <label>Subject 3:</label>
+                    <input type="number" id="m3" placeholder="Enter marks">
+                    <button onclick="calculate()">Calculate</button>
+                    <p id="result"></p>
+                </div>
+                <script>
+                    function calculate() {
+                        let m1 = Number(document.getElementById("m1").value);
+                        let m2 = Number(document.getElementById("m2").value);
+                        let m3 = Number(document.getElementById("m3").value);
+                        let result = document.getElementById("result");
+
+                        if (document.getElementById("m1")
+                            .value === "" || document.getElementById("m2")
+                                .value === "" || document.getElementById("m3")
+                                    .value === "") {
+                            result.textContent = "Please enter all marks";
+                            result.style.color = "red";
+                            return;
+                        } if (m1 < 0 || m1 > 100 || m2 < 0 || m2 > 100 || m3 < 0 || m3 > 100) {
+                            result.textContent = "Marks must be between 0 and 100";
+                            result.style.color = "red";
+                            return;
+                        }
+                        let total = m1 + m2 + m3;
+                        let percentage = total / 3;
+                        let status; if (m1 >= 35 && m2 >= 35 && m3 >= 35) { status = "Pass"; } else {
+                            status = "Fail";
+
+
+                        } result.innerHTML = "Total Marks: " + total + " / 300<br>"
+                            + "Percentage: " + percentage.toFixed(2) + "%<br>" +
+                            "Result: " + status; if (status === "Pass") {
+                            result.style.color = "green";
+
+                        } else { result.style.color = "red"; }
+                    } 
+
+ </script>
+
+
+
+</body>
+</html>

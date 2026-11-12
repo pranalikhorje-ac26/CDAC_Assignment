@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Registration form</title>
+    </head>
+
+    <body>
+        <form onsumblit="return validateForm()">
+        <label> Name: </label>
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <br><br>
+
+        <label>Email: </label>
+        <input type="email" id="email" placeholder="Enter Your Email">
+        <br><br>
+
+        <label>Password: </label>
+        <input type="password" id="password" placeholder="Enter Your password">
+
+        <br><br>
+        <Label>Confirm Password: </Label>
+        <input type="password" id="confirmPassword" placeholder="Enter Your correct password">
+
+        <br><br>
+        <label>Hobbies</label>
+        <input type="checkbox" name="hobbies" value="play">play
+        <input type="checkbox" name="hobbies" value="swimming">swiiming
+
+        <br><br>
+        <label>Gender</label>
+        <input type="radio" name="gender" value="male">male
+        <input type="radio" name="gender" value="female">female
+        <br><br>
+
+        <label>Select city</label>
+        <select id="city">
+            <option value="">--select city---</option>
+            <option value="mumbai">mumbai</option>
+            <option value="pune">pune</option>
+            <option value="banglore">banglore</option>
+        </select>
+        <br><br>
+        <button type="sumbit">Sumbit</button>
+        <br><br>
+
+        <button type="Reset">Reset </button>
+
+        </form>
+
+
+        <script>
+           function validateForm(){
+            let name=document.getElementById("name").value.trim();
+            let email=document.getElementById("email").value.trim();
+            let password=document.getElementById("password").value;
+            let confirmPassword=document.getElementById("confirmPassword").value;
+            let city=document.getElementById("city").value;
+
+            if(name===""){
+                alert("enter your name");
+                return false;
+            }
+
+            if(!email.include("@")|| !email.include(".")){
+                alert("Enter valid email");
+                return false;
+            }
+            let hobbies =
+                document.querySelectorAll(
+                    'input[name="hobby"]:checked'
+                );
+
+            if (hobbies.length === 0) {
+                alert("Please select at least one hobby");
+                return false;
+            }
+           }
+        </script>
+    </body>
+</html>

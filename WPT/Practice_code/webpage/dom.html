@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <title>My Page</title>
+    <style>
+        #para{
+            background-color: red;
+            color: white;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <input type="password" placeholder="password" id="password-field">
+    <button onclick="togglePassword()" id="btn">Show</button>
+
+   <script>
+    function togglePassword(){
+        var passwordField=document.getElementById("password-field");
+        var button=document.getElementById("btn");
+       
+        if(button.innerHTML==="show"){
+             passwordField.setAttribute("type","text");
+        button.innerHTML="Hide";
+
+        }else{
+             passwordField.setAttribute("type","password");
+        button.innerHTML="Show";
+        }
+
+        
+        
+    }
+   </script>
+
+</body>
+
+</html>

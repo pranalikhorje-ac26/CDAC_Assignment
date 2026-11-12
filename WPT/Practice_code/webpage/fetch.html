@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch API Example</title>
+</head>
+
+<body>
+    <h2>User List</h2>
+
+    <button onclick="loadUsers()">Load Users</button>
+
+    <ul id="users"></ul>
+
+    <script>
+        function loadUsers() {
+            fetch("https://jsonplaceholder.typicode.com/users")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch data");
+                    }
+
+                    return response.json();
+                })
+                .then(data => {
+                    let list = document.getElementById("users");
+                    list.innerHTML = "";
+
+                    data.forEach(user => {
+                        let li = document.createElement("li");
+                        li.textContent = user.name;
+                        list.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.log("Error:", error);
+                    alert("Unable to load users");
+                });
+        }
+    </script>
+</body>
+</html>

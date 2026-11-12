@@ -1,0 +1,83 @@
+<html>
+    <head>
+
+        <style>
+            .error-span{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="https://www.google.com" method="get" onsubmit="return validate()">
+            <label>Username</label>
+            <input type="text" placeholder="Enter Username" id="username-field" onkeyup="validateUsername()">
+            <span id="username-error" class="error-span"></span>
+            <br><br>
+
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password" id="password-field" onkeyup="validatePassword()">
+            <span id="password-error" class="error-span"></span>
+            <br><br>
+
+            <label>Phone</label>
+            <input type="text" placeholder="Enter Phone" id="phone-field">
+            <span id="phone-error" class="error-span"></span>
+            <br><br>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+        <script>
+            function validateUsername(){
+                let username = document.getElementById("username-field").value;
+                if(username.length === 0){
+                    document.getElementById("username-error").innerHTML="Username is required";
+                }
+                else{
+                    document.getElementById("username-error").innerHTML="";
+                }
+            }
+
+            function validatePassword(){
+                let password = document.getElementById("password-field").value;
+                if(password.length === 0){
+                    document.getElementById("password-error").innerHTML="password is required";
+                }
+                else{
+                    document.getElementById("password-error").innerHTML="";
+                }
+            }
+
+            function validate(){
+                let isValid = true;
+                let username = document.getElementById("username-field").value;
+                let password = document.getElementById("password-field").value;
+                let phone = document.getElementById("phone-field").value;
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                
+
+                if(username.length === 0){
+                    document.getElementById("username-error").innerHTML="Username is required";
+                    isValid = false;
+                }
+                if(password.length === 0){
+                    document.getElementById("password-error").innerHTML="Password is required";
+                    isValid = false;
+                }
+                else if(!passwordRegex.test(password)){
+                     document.getElementById("password-error").innerHTML="mix of uppercase and lowercase letters, numbers, special characters, and a minimum length requirement";
+                    isValid = false;
+
+
+                }
+                if(phone.length === 0){
+                    document.getElementById("phone-error").innerHTML="Phone is required";
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+        </script>
+    </body>
+</html>

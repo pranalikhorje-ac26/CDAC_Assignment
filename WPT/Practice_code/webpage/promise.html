@@ -1,0 +1,295 @@
+<!-- 
+// square->factorial->square(depends on each other)
+// Multiple async functions are therre and we have to execute the synchronously then we have 
+// we have to go with the nesting of the callback functions.
+
+
+    // console.log("Started calculating sum...");
+
+    //     setTimeout(() => {
+    //         var x = 2;
+    //         var y = 2;
+    //         var z = x + y;
+    //         console.log("Sum is: ", z);
+
+    //         console.log("Started claculating factorial...");
+    //         setTimeout(() => {
+    //             var fact = 1;
+    //             for (var i = 1; i <= z; i++) {
+    //                 fact = fact * i;
+    //             }
+    //             console.log("Factorial  is: ", fact);
+
+    //             console.log("Square claculating...");
+    //             setTimeout(() => {
+    //                 var sq = fact * fact;
+    //                 console.log("square is: ", sq);
+    //             }, 2000);
+
+    //         }, 3000);
+
+    //     }, 1500);
+
+    //This is called as  callback hell. 
+// we should always avoid thecallback hell but multiple async functions are
+//  there and we have to execute them synchronously. 
+
+//  to avoid a callback hell we can make use of PROMISES.
+/* 1. for any of the operation/logic we have to create a promise, promise will remain in pending state.
+   2. Nwo after the execution of the operation either the promise will be fulfilled or it will be rejected.
+   3. now on the basis of the promise state we can take certain actions.
+   
+*/
+
+// Dealing with promises in JS practically :
+
+// Step 1: create promise: 
+// while creatinga promise we havr to decide when to fulfiled the promise and when to reject the promise
+
+        // var myPromise = new Promise(callback-func/executor);
+
+// var myPromise = new Promise(()=>{
+//     logic......
+// });
+
+// var myPromise = new Promise((resolve,reject)=>{
+//     var num = 4;
+//     if(num % 2 == 0){
+//         //resolve
+//         resolve();
+//     }
+//     else{
+//         //reject
+//         reject(); 
+//     }
+// }); -->
+
+
+
+<html>
+    <head></head>
+    <body>
+        <script>
+            // var mypromise = new Promise((resolve,reject)=>{
+            //     var n = 4;
+            //     if(n%2==0){
+            //         resolve();
+            //     }
+            //     else{
+            //         reject();
+            //     }
+            // });
+            // console.log(mypromise);
+
+            // mypromise
+            // .then(()=>{
+            //     console.log("Promise fulfied: no. is even");
+                
+            // })
+            // .catch(()=>{
+            //     console.log("promise rejected: no. is odd");
+                
+            // })
+
+
+            // step 2: execute the promise
+            // step 3: promise handling 
+            // to gandle promise JS probides two functions:then() and catch()
+
+            // promise-object
+                // .then(()=>{
+                // })
+                //.catch(()=>{
+                // });
+
+    // var mypromise = new Promise((resolve, reject) => {
+    //     var n = 4;
+    //     //we having certain data here in execution
+    //     // function that is needed by then and catch function.
+
+    //     if (n % 2 == 0) {
+    //         resolve("Promise fulfield: no. is even");
+    //     }
+    //     else {
+    //         reject("promise rejected: no. is odd");
+    //     }
+    // });
+    // console.log(mypromise);
+
+    // mypromise
+    //     .then((arg) => {
+    //         console.log(arg);
+
+    //     })
+    //     .catch((errorMsg) => {
+    //         console.log(errorMsg);
+
+    //     });
+
+
+
+
+
+    // function checkEvem(num) {
+    //     var mypromise = new Promise((resolve, reject) => {
+    //         if (n % 2 == 0) {
+    //             resolve("Promise fulfield: no. is even");
+    //         }
+    //         else {
+    //             reject("promise rejected: no. is odd");
+    //         }
+    //     });
+    //     return mypromise;
+    // }
+
+    //     checkEvem(4).then((arg) => {
+    //         console.log(arg);
+
+    //     })
+    //     .catch((errorMsg) => {
+    //         console.log(errorMsg);
+
+    //     });
+
+    //****************************************************************************************
+
+
+// function sum(a,b){
+//     console.log("started calculating sum...");
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(() => {
+//             if(a>100||b>100){
+//                 reject("upper lmit has been cross,values should be less than 100");
+//             }
+//             else{
+//                  var c = a+b;
+//             resolve(c);
+//             }
+//         }, 1500);
+//     });
+// }
+
+// function factorial(num){
+//     console.log("Started calculating factorial...");
+//     return new Promise((resolve, reject)=>{
+//          setTimeout(() => {
+//             var fact = 1;
+//             for (var i = 1; i <= num; i++) {
+//                 fact = fact * i;
+//             }
+//             resolve(fact);
+//         }, 3000);
+//     })
+// }
+
+// sum(2,3)
+// .then((sumResult)=>{
+//     console.log("Sum is ",sumResult);
+//    return factorial(sumResult);
+// })
+// .then((factResult)=>{
+//     console.log("factorial is: ",factResult);
+// })
+// .catch((error)=>{
+//     console.log(error);
+// });
+
+
+
+//***********************************************************************
+
+// two ways to handling the promises:
+// 1.then and catch 
+// 2.Async and await keywords
+
+//  await keyword :: it will make rest of the statement wait for the 
+// current function to resolve promise / complete its execution.
+//when the promise has been resoved it will also return resolved value. 
+// whenever we are calling afunction that returns a promise use await
+//eg.  var rs = await sum() // rs =5
+
+// function handlePromise(){
+
+//     try{
+//          var rs =  await sum();
+//          var factResult = await factorial(rs);
+//          var sqResult = await square(factResult);
+//     } catch(error){
+
+//     }
+   
+// }
+
+
+
+
+
+
+async function sum(a,b){
+    console.log("started calculating sum...");
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+            if(a>100||b>100){
+                reject("upper lmit has been cross,values should be less than 100");
+            }
+            else{
+                 var c = a+b;
+            resolve(c);
+            }
+        }, 1500);
+    });
+}
+
+async function factorial(num){
+    console.log("Started calculating factorial...");
+    return new Promise((resolve, reject)=>{
+         setTimeout(() => {
+            var fact = 1;
+            for (var i = 1; i <= num; i++) {
+                fact = fact * i;
+            }
+            resolve(fact);
+        }, 3000);
+    })
+}
+async function handlePromise(){
+
+    try{
+        const sumResult = await sum(2,3);
+        console.log("sum is: " , sumResult);
+        const factResult = await factorial(sumResult);
+        console.log("factorial is: ",factResult);
+    } catch(error){
+        console.log(error);
+
+    }
+
+}
+handlePromise();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+        </script>
+    </body>
+</html>

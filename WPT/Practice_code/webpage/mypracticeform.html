@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: aqua;
+        }
+
+        .container {
+            width: 350px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin: 8px 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .submit {
+            background-color: green;
+            color: white;
+        }
+
+        .clear {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Registration Form</h2>
+
+        <form onsubmit="return validateForm()">
+
+            <label>Name:</label>
+            <input type="text" id="name">
+
+            <label>Email:</label>
+            <input type="email" id="email">
+
+            <label>Password:</label>
+            <input type="password" id="password">
+
+            <input type="checkbox" id="togglePassword">
+            Show Password
+
+            <br><br>
+
+            <label>Confirm Password:</label>
+            <input type="password" id="confirmpassword">
+
+            <input type="checkbox" id="toggleConfirmPassword">
+            Show Confirm Password
+
+            <br><br>
+
+            <label>Hobbies:</label>
+            <br>
+
+            <input type="checkbox" name="hobby" value="Reading">
+            Reading
+
+            <input type="checkbox" name="hobby" value="Sports">
+            Sports
+
+            <input type="checkbox" name="hobby" value="Music">
+            Music
+
+            <br><br>
+
+            <label>Gender:</label>
+            <br>
+
+            <input type="radio" name="gender" value="Male">
+            Male
+
+            <input type="radio" name="gender" value="Female">
+            Female
+
+            <br><br>
+
+            <label>City:</label>
+
+            <select id="city">
+                <option value="">Select City</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Nagpur">Nagpur</option>
+            </select>
+
+            <br><br>
+
+            <button type="submit" class="submit">
+                Submit
+            </button>
+
+            <button type="reset" class="clear">
+                Clear
+            </button>
+
+            butt
+
+        </form>
+
+    </div>
+
+    <script>
+
+        // Show or Hide Password
+        document.getElementById("togglePassword")
+            .addEventListener("change", function () {
+
+                let password =
+                    document.getElementById("password");
+
+                if (this.checked) {
+                    password.type = "text";
+                } else {
+                    password.type = "password";
+                }
+            });
+
+
+        // Show or Hide Confirm Password
+        document.getElementById("toggleConfirmPassword")
+            .addEventListener("change", function () {
+
+                let confirmPassword =
+                    document.getElementById("confirmpassword");
+
+                if (this.checked) {
+                    confirmPassword.type = "text";
+                } else {
+                    confirmPassword.type = "password";
+                }
+            });
+
+
+        // Form Validation
+        function validateForm() {
+
+            let name =
+                document.getElementById("name").value.trim();
+
+            let email =
+                document.getElementById("email").value.trim();
+
+            let password =document.getElementById("password").value;
+
+            let confirmPassword =document.getElementById("confirmpassword").value;
+
+            let city =document.getElementById("city").value;
+
+
+            // Validate Name
+            if (name === "") {
+                alert("Please enter your name");
+                return false;
+            }
+
+
+            // Validate Email
+            let emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+
+
+            // Validate Hobbies
+            let hobbies =
+                document.querySelectorAll(
+                    'input[name="hobby"]:checked'
+                );
+
+            if (hobbies.length === 0) {
+                alert("Please select at least one hobby");
+                return false;
+            }
+
+
+            // Validate Gender
+            let gender =
+                document.querySelector(
+                    'input[name="gender"]:checked'
+                );
+
+            if (gender === null) {
+                alert("Please select your gender");
+                return false;
+            }
+
+
+            // Validate City
+            if (city === "") {
+                alert("Please select your city");
+                return false;
+            }
+
+
+            // Validate Password
+            if (password.length < 6) {
+                alert("Password must contain at least 6 characters");
+                return false;
+            }
+
+
+            // Validate Confirm Password
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match");
+                return false;
+            }
+
+
+            // All fields are correct: redirect directly
+            window.location.href = "https://www.google.com";
+
+            return false;
+        }
+
+    </script>
+
+</body>
+</html>
+
